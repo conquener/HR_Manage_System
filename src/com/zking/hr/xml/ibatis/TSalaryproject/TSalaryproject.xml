@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+ "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="salaystandpr" type="com.zking.hr.pojo.TSalaryproject"/>
+	<typeAlias alias="pageUtil" type="com.zking.hr.utils.pageUtils.PageUtils"></typeAlias>
+	<insert id="insertsalarypro" parameterClass="salaystandpr">
+	<selectKey keyProperty="salaryprojectId" resultClass="java.lang.Integer">
+			select
+			max(SalaryProjectID)+1 from TSalaryProject
+		</selectKey>
+		<![CDATA[
+		insert into TSalaryProject(SalaryProjectID,SalaryProjectName,remark)
+		 values(#salaryprojectId#,#salaryprojectName#,#remark#)
+		 	]]>
+	</insert>
+
+	<update id="updatesalarypro" parameterClass="salaystandpr" >
+	<![CDATA[
+			update TSalaryProject set 
+			SalaryProjectName=#salaryprojectName#,remark=#remark#
+			where SalaryProjectID=#salaryprojectId#
+			]]>
+	</update>
+
+	<delete id="deletesalarypro" parameterClass="java.lang.Integer" >
+		delete from TSalaryProject where SalaryProjectID=#salaryprojectId#
+	</delete>
+	
+	<select id="querysalarypro" parameterClass="pageUtil" resultClass="salaystandpr">
+		select SalaryProjectID,SalaryProjectName,remark from (select rownum rn,TSalaryProject.* from TSalaryProject) where rn between #beginRow# and #endRow# 
+	</select>
+	
+	<select id="queryCountsalarypro" resultClass="java.lang.Integer">
+		select count(1) from TSalaryProject
+	</select>
+	<select id="queryAllSp" resultClass="salaystandpr">
+		select SalaryProjectID,SalaryProjectName,remark from 
+		TSalaryProject
+		order by SalaryProjectID DESC
+	</select>
+</sqlMap>

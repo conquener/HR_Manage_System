@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+ "http://ibatis.apache.org/dtd/sql-map-2.dtd"
+>
+
+<sqlMap>
+	<typeAlias alias="tsp" type="com.zking.hr.pojo.TSalarypayoff"></typeAlias>
+	<typeAlias alias="pageUtil" type="com.zking.hr.utils.pageUtils.PageUtils"></typeAlias>
+	<!-- <insert id="inserttspayoff" parameterClass="tsp">
+		<selectKey keyProperty="salarypayoffId" resultClass="java.lang.Integer">
+			select
+				max(salarypayoffId)+1 from TSalaryPayOff
+		</selectKey>
+		<![CDATA[
+			insert into TSalaryPayOff(SalaryPayOffID,SalaryPayOffName,SalaryBeginTime,SalaryEndTime,remark)
+				 values(#salarypayoffId#,#salarypayoffName#,#salaryBegintime#,#salaryEndtime#,#remark#)
+				 ]]>
+	</insert>
+	 -->	
+	<update id="updatetspayoff"  parameterClass="tsp">
+	
+		update TSalaryPayOff 
+			set 
+				SalaryPayOffName=#salarypayoffName#,SalaryBeginTime=#salaryBegintime#,SalaryEndTime=#salaryEndtime#,remark=#remark#
+					where  SalaryPayOffID=#salarypayoffId#		
+	</update>
+	<!-- 
+
+	<delete id="deletetsspayoff" parameterClass="java.lang.Integer">
+		delete from TSalaryPayOff where SalaryPayOffID==#salarypayoffId#
+	</delete>
+		 -->
+	
+	<select id="countrowtsspayoff" resultClass="java.lang.Integer" >
+		select count(1) from TSalaryPayOff 
+	</select>
+	
+	<select id="queryListtsspayoff" parameterClass="pageUtil" resultClass="tsp"> 
+		select 
+			SalaryPayOffID,SalaryPayOffName,SalaryBeginTime,SalaryEndTime,remark
+				from (select rownum rn,SalaryPayOffID,SalaryPayOffName,SalaryBeginTime,SalaryEndTime,remark
+							 from TSalaryPayOff)
+					where rn between #beginRow# and #endRow#
+	</select>
+	
+	<select id="querypayoff" resultClass="tsp"> 
+		select 
+			SalaryPayOffID,SalaryPayOffName,SalaryBeginTime,SalaryEndTime,remark
+				from TSalaryPayOff
+	</select>
+</sqlMap>

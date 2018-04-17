@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+ "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant value="spring" name="struts.objectFactory"/>
+	<package name="salaryStandManagepkg" extends="struts-default" namespace="/">
+		<action name="salaryStandManage" class="salaryStandregister">
+			<result name="success1">/salary/salarystandardmanage/salarystandard_register_success.jsp</result>
+			<result name="success2">/salary/salarystandardmanage/salarystandard_check_list.jsp</result>			
+			<result name="success3">/salary/salarystandardmanage/salarystandard_check.jsp</result>
+			<result name="success4">/salary/salarystandardmanage/salarystandard_check_success.jsp</result>
+			<result name="success5">/salary/salarystandardmanage/salarystandard_query_result.jsp</result>
+			<result name="success6">/salary/salarystandardmanage/salaryproject.jsp</result>
+			<result name="success7">/salary/salarystandardmanage/salarystandard_update_query_list.jsp</result>
+			<result name="success8">/salary/salarystandardmanage/salarystandard_update.jsp</result>
+			<result name="success9">/salary/salarystandardmanage/updatesuccess.jsp</result>
+			<result name="success10">/salary/salarystandardmanage/salarystandard_register.jsp</result>
+		</action>
+	</package>
+	
+</struts>

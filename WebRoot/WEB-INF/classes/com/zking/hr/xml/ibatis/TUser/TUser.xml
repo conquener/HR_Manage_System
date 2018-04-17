@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+ "http://ibatis.apache.org/dtd/sql-map-2.dtd"
+>
+<sqlMap>
+	<typeAlias alias="user" type="com.zking.hr.pojo.TUser"></typeAlias>
+	<typeAlias alias="login" type="com.zking.hr.view.pojo.user.Login"></typeAlias>
+	<typeAlias alias="userpwd" type="com.zking.hr.view.pojo.user.userpwd" ></typeAlias>
+	<typeAlias alias="userRole" type="com.zking.hr.view.pojo.user.UserRole"></typeAlias>
+	<typeAlias alias="pageUtil" type="com.zking.hr.utils.pageUtils.PageUtils"></typeAlias>
+	
+	
+	
+	<insert id="insertUser" parameterClass="user">
+		<selectKey keyProperty="userId" resultClass="java.lang.Integer">
+			select
+			max(Userid)+1 from Tuser
+		</selectKey>
+		<![CDATA[insert into TUSER(Userid,UserReferredtoas,username,userpassword,userfile,userroleId,userroleName,Userrolecheck,UserTrueName,Rolerollbackstatus,remark)
+		  values(#userId#,#userReferredToAs#,#userName#,#userPassword#,#userFile#,#userRoleId#,#userRoleName#,#userRoleCheck#,#userTruename#,#roleRollbackStatus#,#remark#)
+		]]>
+	</insert>
+
+
+	<update id="updateUser" parameterClass="user">
+		update TUSER set UserReferredtoas=#userReferredToAs#
+		<isNotNull property="userName" prepend=",">
+			username=#userName#
+		</isNotNull>
+		<isNotNull property="userPassword" prepend=",">
+		 	userpassword=#userPassword#
+		</isNotNull>
+		<isNotNull property="userFile" prepend=",">
+			userfile=#userFile#
+		</isNotNull>
+		<isNotNull property="userRoleId" prepend=",">
+			userroleId=#userRoleId#
+		</isNotNull>
+		<isNotNull property="userRoleName" prepend=",">
+			userroleName=#userRoleName#		
+		</isNotNull>
+		<isNotNull property="userRoleCheck" prepend=",">
+			Userrolecheck=#userRoleCheck#
+		</isNotNull>
+		<isNotNull property="userTruename" prepend=",">
+			UserTrueName=#userTruename#
+		</isNotNull>
+		<isNotNull property="roleRollbackStatus" prepend=",">
+			Rolerollbackstatus=#roleRollbackStatus#
+		</isNotNull>
+		<isNotNull property="remark" prepend=",">
+			remark=#remark#
+		</isNotNull>
+		 where  Userid=#userId#
+	</update>
+
+	<update id="updateUserRole" parameterClass="java.lang.String">
+		update TUSER set Userrolecheck=2 where UserName=#userName#
+	</update>
+	<update id="updateUserRolerollback" parameterClass="java.lang.Integer">
+		update TUSER set Rolerollbackstatus=2 where UserId=#userId#
+	</update>
+	
+	<update id="updatebynameAndPwd" parameterClass="userpwd">
+		update TUSER set userpassword=#newuserPwd# where userId=#userId# and userpassword=#userPwd#
+	</update>
+	
+	<update id="updatebyrole" parameterClass="userRole">
+		update TUSER set  userroleName=#roleName#,userroleId=#roleId#,Userrolecheck=1 where userId=#userId#
+	</update>
+
+	<delete id="deleteUser" parameterClass="java.lang.Integer">
+		delete from TUser where Userid = #userId#
+	</delete>
+	
+	<delete id="deleteUserRole" parameterClass="java.lang.Integer">
+		update TUser set userroleName='',Rolerollbackstatus=1,userroleId=0 where Userid = #userId#
+	</delete>
+	<select id="selectUser" parameterClass="login" resultClass="user">
+		select
+			Userid,UserReferredtoas,username,userpassword,userfile,userroleId,userroleName,Userrolecheck,UserTrueName,Rolerollbackstatus,remark
+		from TUser
+			where username=#userName# and userpassword=#userPwd#		
+	</select>
+		
+	<select id="selectUserById" parameterClass="java.lang.Integer" resultClass="user">
+		select 			
+			UserId,UserReferredtoas,userName,userPassword,userFile,userroleId,userroleName,UserRolecheck,UserTrueName,RoleRollbackstatus,remark
+		from TUser
+			where UserId = #userId#
+	</select>
+	<select id="queryindex" parameterClass="pageUtil" resultClass="user"> 
+		select 
+		UserId,UserReferredtoas,userName,userPassword,userFile,userroleId,userroleName,userRolecheck,UserTrueName,RoleRollbackstatus,remark
+		from (select rownum rn,TUser.* from TUser)
+		where rn between #beginRow# and #endRow#
+		
+	</select>
+	<select id="Usercountrow" resultClass="java.lang.Integer">
+		select count(1) from TUser
+	</select>
+
+	
+	<select id="queryBycheckUserName" parameterClass="java.lang.String" resultClass="java.lang.Integer">
+		select count(1) from TUser where userName=#userName#
+	</select>
+	
+	<select id="roleselectquerycount" resultClass="java.lang.Integer">
+		select count(1) from TUser where userRolecheck = 1
+	</select>
+	<select id="roleselectquery" parameterClass="pageUtil" resultClass="user">
+		select 
+		UserId,UserReferredtoas,userName,userPassword,userFile,userroleId,userroleName,userRolecheck,UserTrueName,RoleRollbackstatus,remark
+		from (select rownum rn,TUser.* from TUser where userRolecheck = 1)
+		where userRolecheck = 1 and rn between #beginRow# and #endRow#
+	</select>
+	<select id="rolesetUserLike" parameterClass="java.lang.String" resultClass="user">
+		select * from TUser where userName like '%'||#userName#||'%' order by userId 
+	</select>
+	
+</sqlMap>

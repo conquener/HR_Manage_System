@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+ "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="TRolePermission" type="com.zking.hr.pojo.TRolePermission"></typeAlias>
+	<typeAlias alias="RoleIdPermissionId" type="com.zking.hr.xml.ibatis.pojo.RoleIdPermissionId"></typeAlias>
+	
+	<insert id="insertTRolePermission" parameterClass="TRolePermission">
+		<selectKey keyProperty="rolePermissionId" resultClass="java.lang.Integer">
+			select max(RolePermissionId)+1 from TRolePermission
+		</selectKey>
+		<![CDATA[
+			insert into TRolePermission(RolePermissionId,RoleID,PermissionID,remark) 
+					values(#rolePermissionId#,#roleId#,#permissionId#,#remark#)
+		]]>
+	</insert>
+	
+	<delete id="deleteTRolePermission" parameterClass="RoleIdPermissionId">
+		<![CDATA[
+			delete from TRolePermission where Roleid=#roleId# and PermissionID=#permissionId#
+		]]>
+	</delete>
+	
+	<delete id="deleterolepermiss" parameterClass="java.lang.Integer">
+		<![CDATA[
+			delete from TRolePermission where RolePermissionID=#rolePermissionId# 
+		]]>
+	</delete>
+	<update id="updateTRolePermission" parameterClass="TRolePermission">
+		update TRolePermission set PermissionID=#permissionId# 
+					  where RolePermissionID=#rolePermissionId#
+	</update>
+	
+	
+	<select id="queryTRolePermission" parameterClass="com.zking.hr.utils.pageUtils.PageUtils" resultClass="TRolePermission">
+		select rolePermissionId,roleId,permissionId,remark from 
+		(select rowNum RN,rolePermissionId,roleId,permissionId,remark from TRolePermission)
+		where RN BETWEEN #beginRow# AND #endRow# 
+	</select>
+	
+	<select id="TRolePermissionRowCount" resultClass="java.lang.Integer">
+		select count(1) from TRolePermission
+	</select>
+	
+	
+	<resultMap id="queryroleAndPremissMap" class="java.util.HashMap">
+		<result property="rolepermisssionId" javaType="java.lang.Integer" />
+		<result property="roleId" javaType="java.lang.Integer" />
+		<result property="roleName" javaType="java.lang.String" />
+		<result property="permisssionalId" javaType="java.lang.Integer" />
+		<result property="permisssionalName" javaType="java.lang.String" />
+	</resultMap>
+	
+	
+	<select id="queryroleAndPremiss" parameterClass="com.zking.hr.utils.pageUtils.PageUtils"
+	resultMap="queryroleAndPremissMap">
+		select
+		ROLEPERMISSIONID,ROLEID,ROLENAME,PERMISSIONID,PERMISSIONNAME
+		from (
+		select t.*,rownum rn from (
+		select
+		rp.ROLEPERMISSIONID,r.ROLEID,r.ROLENAME,p.PERMISSIONID,p.PERMISSIONNAME
+		from trolepermission rp join trole r on rp.ROLEID = r.ROLEID
+		join
+		tpermission p on p.PERMISSIONID = rp.PERMISSIONID
+		order by ROLEID ASC,PERMISSIONID ASC
+		) t
+		)
+		where RN BETWEEN #beginRow# AND #endRow#
+	</select>
+	
+	<select id="queryroleAndPremissCount" resultClass="java.lang.Integer">
+		select count(1) from  (select rownum rn,rp.ROLEPERMISSIONID,r.ROLEID,r.ROLENAME,p.PERMISSIONID,p.PERMISSIONNAME from ((trolepermission rp join trole r on rp.ROLEID = r.ROLEID )
+      join tpermission p on p.PERMISSIONID = rp.PERMISSIONID))
+     </select>
+	
+
+</sqlMap>

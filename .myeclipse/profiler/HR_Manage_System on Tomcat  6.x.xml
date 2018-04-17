@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<entry key="profiler.settings.instrument.empty.methods">true</entry>
+<entry key="ProfilerCPUSettings_profile_runnables">true</entry>
+<entry key="profiler.settings.n.profiled.threads.limit">32</entry>
+<entry key="ProfilerCPUSettings_filter_type">2</entry>
+<entry key="profiler.settings.obj.alloc.stack.sampling.depth">-1</entry>
+<entry key="profiler.settings.instrument.method.invoke">true</entry>
+<entry key="profiler.settings.instr.scheme">1</entry>
+<entry key="ProfilerMemorySettings_track_every">10</entry>
+<entry key="ProfilerMemorySettings_mode">4</entry>
+<entry key="ProfilerCPUSettings_root_classes">com.zking.hr.biz.impl.clickMenu.**
+com.zking.hr.biz.impl.login.**
+com.zking.hr.biz.impl.register.**
+com.zking.hr.biz.interfaces.clickmuen.**
+com.zking.hr.biz.interfaces.customization.**
+com.zking.hr.biz.interfaces.login.**
+com.zking.hr.biz.interfaces.register.**
+com.zking.hr.dao.**
+com.zking.hr.pojo.**
+com.zking.hr.test.TUser.**
+com.zking.hr.utils.DateUtil.**
+com.zking.hr.utils.pageUtils.**
+com.zking.hr.view.TFiles.**
+com.zking.hr.view.contorl.action.clickMenu.**
+com.zking.hr.view.contorl.action.login.**
+com.zking.hr.view.contorl.action.register.**
+com.zking.hr.view.pagepojo.**
+com.zking.hr.view.pojo.Salarystanderd.**
+com.zking.hr.view.pojo.TStafftransfer.**
+com.zking.hr.view.pojo.level.**
+com.zking.hr.view.pojo.pageRow.**
+com.zking.hr.view.pojo.user.**
+com.zking.hr.xml.ibatis.pojo.**
+</entry>
+<entry key="ProfilerCPUSettings_filter_value">com.zking.hr.biz.impl.clickMenu.*,&#13;
+com.zking.hr.biz.impl.login.*,&#13;
+com.zking.hr.biz.impl.register.*,&#13;
+com.zking.hr.biz.interfaces.clickmuen.*,&#13;
+com.zking.hr.biz.interfaces.customization.*,&#13;
+com.zking.hr.biz.interfaces.login.*,&#13;
+com.zking.hr.biz.interfaces.register.*,&#13;
+com.zking.hr.dao.*,&#13;
+com.zking.hr.pojo.*,&#13;
+com.zking.hr.test.TUser.*,&#13;
+com.zking.hr.utils.DateUtil.*,&#13;
+com.zking.hr.utils.pageUtils.*,&#13;
+com.zking.hr.view.TFiles.*,&#13;
+com.zking.hr.view.contorl.action.clickMenu.*,&#13;
+com.zking.hr.view.contorl.action.login.*,&#13;
+com.zking.hr.view.contorl.action.register.*,&#13;
+com.zking.hr.view.pagepojo.*,&#13;
+com.zking.hr.view.pojo.Salarystanderd.*,&#13;
+com.zking.hr.view.pojo.TStafftransfer.*,&#13;
+com.zking.hr.view.pojo.level.*,&#13;
+com.zking.hr.view.pojo.pageRow.*,&#13;
+com.zking.hr.view.pojo.user.*,&#13;
+com.zking.hr.xml.ibatis.pojo.*</entry>
+<entry key="profiler.settings.istrument.getter.setter.methods">true</entry>
+<entry key="myeclipse.profiling.mode">0</entry>
+<entry key="ProfilerMemorySettings_stacktraces">-1</entry>
+<entry key="profiler.settings.sampling.interval">10</entry>
+<entry key="profiler.settings.cpu.profiling.type">0</entry>
+</properties>

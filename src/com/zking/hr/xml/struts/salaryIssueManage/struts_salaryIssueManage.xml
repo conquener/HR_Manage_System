@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+ "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant value="spring" name="struts.objectFactory"/>
+	<package name="salIssueManpkg" extends="struts-default" namespace="/">
+		<action name="salIssueMan" class="salIssueManaction">
+			<result name="success">/salary/salarysendmanage/salarysendtocompany.jsp</result>
+			<result name="success1">/salary/salarysendmanage/salarysendcheckwokrerdetails.jsp</result>
+			<result name="success2">/salary/salarysendmanage/salarysendtocompany.jsp</result>
+			<result name="success3">/salary/salarystandardmanage/salary_send_success.jsp</result>
+			<result name="success4">/salary/salarysendmanage/salarysendcheck.jsp</result>
+			<result name="success5">/salary/salarysendmanage/salarysendcheckwokrerdetails.jsp</result>
+			<result name="success6">/salary/salarysendmanage/salarysendcheck.jsp</result>
+			<result name="success7">/salary/salarystandardmanage/salary_send_check_success.jsp</result>
+			<result name="success8">/salary/salarysendmanage/salarysend_query_result.jsp</result>
+			<result name="success9" type="redirect">/salIssueMan!clicksalarysend</result>
+		</action>
+	</package>
+
+
+</struts>

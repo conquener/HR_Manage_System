@@ -1,0 +1,65 @@
+.t {
+	LINE-HEIGHT: 1.4
+}
+
+BODY {
+	FONT-FAMILY: ËÎÌå;
+	FONT-SIZE: 9pt;
+	SCROLLBAR-HIGHLIGHT-COLOR: buttonface;
+	SCROLLBAR-SHADOW-COLOR: buttonface;
+	SCROLLBAR-3DLIGHT-COLOR: buttonhighlight;
+	SCROLLBAR-TRACK-COLOR: #eeeeee;
+	SCROLLBAR-DARKSHADOW-COLOR: buttonshadow;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+
+TD {
+	FONT-FAMILY: ËÎÌå;
+	FONT-SIZE: 9pt
+}
+
+DIV {
+	FONT-FAMILY: ËÎÌå;
+	FONT-SIZE: 9pt
+}
+
+FORM {
+	FONT-FAMILY: ËÎÌå;
+	FONT-SIZE: 9pt
+}
+
+P {
+	FONT-FAMILY: ËÎÌå;
+	FONT-SIZE: 9pt
+}
+
+TD {
+	FONT-FAMILY: ËÎÌå;
+	FONT-SIZE: 9pt
+}
+
+BR {
+	FONT-FAMILY: ËÎÌå;
+	FONT-SIZE: 9pt
+}
+
+.style5 {
+	color: #CC6699;
+	font-family: "Courier New", Courier, mono;
+}
+
+.style6 {
+	color: #CC9900
+}
+
+.style8 {
+	color: #CCCCCC
+}
+
+.style9 {
+	font-family: "Ó×Ô²", Times, serif;
+	color: #006633;
+}

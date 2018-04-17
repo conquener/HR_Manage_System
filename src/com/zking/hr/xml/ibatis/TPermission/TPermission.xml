@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+ "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="TPermission" type="com.zking.hr.pojo.TPermission"></typeAlias>
+	<delete id="deleteTPerm" parameterClass="java.lang.Integer">
+		delete from TPermission where 1=1 and permissionId=#permissionId#
+	</delete>
+	
+	<update id="updateTPermission" parameterClass="TPermission">
+		update TPermission set PermissionName=#permissionName#,PermissionAddress=#permissionAddress#,
+								ParentID=#parentId#,Remark=#remark#
+							where PermissionId=#permissionId#
+	</update>
+	
+	<insert id="insertTPermission" parameterClass="TPermission">
+		<selectKey keyProperty="permissionId" resultClass="java.lang.Integer">
+			select max(permissionId)+1 from Tpermission
+		</selectKey>
+		<![CDATA[
+			insert into Tpermission(permissionId,Permissionname,Permissionaddress,ParentID,Remark)
+			values(#permissionId#,#permissionName#,#permissionAddress#,#parentId#,#remark#)
+		]]>
+	</insert>
+	
+	<select id="queryTPermission" parameterClass="java.lang.Integer" resultClass="TPermission">
+		select permissionId,permissionName,permissionAddress,parentId from TPermission where permissionId in 
+		(select permissionId from TRolePermission where roleId=#userRoleId#) 
+	</select>
+	
+	
+	<select id="parentIdPermission" parameterClass="java.lang.Integer" resultClass="TPermission" >
+		select permissionId,permissionName,permissionAddress,parentId
+			from TPermission
+				where permissionId=#parentid#
+	
+	</select>
+	
+	
+	<select id="queryTPermissionAll" resultClass="TPermission" >
+		select permissionId,permissionName,permissionAddress,parentId,remark
+			from TPermission where parentId = 0
+	</select>
+	<select id="getRoleNotPermission" parameterClass="java.lang.Integer" resultClass="TPermission">
+		select * from TPermission p where  p.permissionid not in (
+	       select PermissionId from trolePermission  where roleId=#roleId#
+			) and parentId = 0
+	</select>
+	
+</sqlMap>

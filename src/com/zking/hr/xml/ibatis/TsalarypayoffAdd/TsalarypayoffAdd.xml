@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+ "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="TsalarypayoffAdd" type="com.zking.hr.pojo.TsalarypayoffAdd"></typeAlias>
+	<insert id="insertTsalarypayoffAdd" parameterClass="TsalarypayoffAdd">
+	<selectKey keyProperty="salarypayoffId" resultClass="java.lang.Integer">
+			select
+			max(SalaryPayOffId)+1 from TsalarypayoffAdd
+		</selectKey>
+		insert into TsalarypayoffAdd(SalaryPayOffId,RegisterMan,RegisterTime,PayOffTotalMoney,PayOffTotalPersonNum)
+			values(#salarypayoffId#,#registerman#,#registertime#,#payofftotalmoney#,#payofftotalpersonnum#)
+	</insert>
+	
+	<select id="salarypaydao" parameterClass="java.lang.String" resultClass="TsalarypayoffAdd">
+		select SalaryPayOffId,RegisterMan,RegisterTime,PayOffTotalMoney,PayOffTotalPersonNum
+			from TsalarypayoffAdd
+				where RegisterMan = #registerman#
+	</select>
+
+	<delete id="salaryAdddeleteByName" parameterClass="java.lang.String" >
+		delete from TsalarypayoffAdd where RegisterMan = #userName#
+	
+	</delete>
+
+
+</sqlMap>

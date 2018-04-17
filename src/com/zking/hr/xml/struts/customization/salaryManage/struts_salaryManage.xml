@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+ "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.objectFactory" value="spring"></constant>
+	<package name="salaryManagepkg" extends="struts-default" namespace="/clineset-salary">
+		<!-- 薪酬项目数据加载 -->
+		<action name="salaryPro" class="salaryProaction">
+			<result name="success">/clineset-salary/salary_project_management.jsp</result>
+		</action>
+		<!-- 薪酬项目删除功能 -->
+		<action name="salaryProDel" class="salaryProaction">
+			<result type="redirect" name="success">/clineset-salary/salaryPro!loadSalaryPro?</result>
+		</action>
+		<!-- 薪酬项目增加功能 -->
+		<action name="salaryProIns" class="salaryProaction">
+			<result type="redirect" name="success">/clineset-salary/salaryPro!loadSalaryPro</result>
+		</action>
+		
+		
+		<!-- 薪酬发放方式数据加载 -->
+		<action name="salaryPay" class="salaryPayaction">
+			<result name="success">/clineset-salary/salary_giveoutway.jsp</result>
+		</action>
+		<!-- 薪酬发放方式修改数据加载 -->
+		<action name="updateSalaryPayLoad" class="salaryPayaction">
+			<result name="success">/clineset-salary/salary_giveoutway_change.jsp</result>
+		</action>
+		<!-- 薪酬发放方式修改 -->
+		<action name="updSalaryPay" class="salaryPayaction">
+			<result type="redirect" name="success">/clineset-salary/salaryPay!loadSalaryPay</result>
+		</action>
+		
+		
+		<!-- 订单销售绩效数据加载 -->
+		<action name="OrderPer" class="orderPeraction">
+			<result name="success">/clineset-salary/salary_marketperformance.jsp</result>
+		</action>
+		<!-- 订单销售修改数据加载 -->
+		<action name="LoadOrderPerUpd" class="orderPeraction">
+			<result name="success">/clineset-salary/salary_marketperformance_change.jsp</result>
+		</action>
+		<!-- 订单销售绩效修改 -->
+		<action name="OrderPerUpd" class="orderPeraction">
+			<result type="redirect" name="success">/clineset-salary/OrderPer!loadOrderPer</result>
+		</action>
+	</package>
+</struts>

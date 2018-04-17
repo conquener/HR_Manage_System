@@ -1,0 +1,207 @@
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+		<link rel="stylesheet" href="../../table.css" type="text/css" />
+		<title>无标题文档</title>
+		<script type="text/javascript">
+		function doEdit(id)
+		{
+			//document.forms[0].action = document.forms[0].action + "?operate=doEdit&method=change&id=" + id;
+			document.forms[0].action = "salarystandard_register_success.html";
+			document.forms[0].submit();
+		}
+		</script>
+	</head>
+
+	<body>
+		<form action="salarystandard.do" method="post">
+			<table width="100%">
+				<tr>
+					<td>
+						<font color="#0000CC">您正在做的业务是:人力资源管理--薪酬发放管理--薪酬发放登记</font>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div align="right">
+							<input type="button" value="提交信息" class="BUTTON_STYLE1" onclick="doEdit(1)">
+							<input type="button" value="返回" onclick="history.back();" class="BUTTON_STYLE1" >
+						</div>
+					</td>
+				</tr>
+			</table>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 薪酬发放记录 
+			<table width="100%" border="1" cellpadding=0 cellspacing=1
+				bordercolorlight=#848284 bordercolordark=#eeeeee
+				class="TABLE_STYLE1">
+				
+				<tr>
+					<td class="TD_STYLE1"> 
+						登记人<br></td>
+					<td colspan="3" class="TD_STYLE1">登记时间<br></td>
+					<td colspan="4" class="TD_STYLE1"> 
+						发放总金额<br></td>
+						<td colspan="4" class="TD_STYLE1"> 
+						发放总人数<br></td>
+						
+						<td colspan="4" class="TD_STYLE1"> 
+						机构一<br></td>
+						<td colspan="4" class="TD_STYLE1"> 
+						机构二<br></td>
+						<td colspan="4" class="TD_STYLE1"> 
+						机构三<br></td>
+						
+						
+				</tr>
+				
+				<input type="hidden" name="list[0].sdtId" value="1" class="INPUT_STYLE2">
+				<tr class="TD_STYLE2">
+					<td>
+						1
+						<input type="hidden" name="list[0].itemId" value="1" class="INPUT_STYLE2">
+					</td>
+					<td colspan="3">
+						2015/08/02
+						
+					</td>
+					<td colspan="4">
+						0.0
+					</td>
+					
+					<td colspan="4">100</td>
+					<td class="TD_STYLE2" colspan="4">
+						<select name="item.humanRace" class="SELECT_STYLE1"><option value="v集团">v集团</option>
+							
+								<option value="A集团">A集团</option>
+								<option value="B集团">B集团</option>
+					</select>
+					</td>
+					<td class="TD_STYLE2" colspan="4">
+						<select name="item.humanRace" class="SELECT_STYLE1"><option value="C公司">C公司</option>
+							
+								<option value="A公司">A公司</option>
+								<option value="B公司">B公司</option>
+					</select>
+					</td>
+					<td class="TD_STYLE2" colspan="4">
+						<select name="item.humanRace" class="SELECT_STYLE1"><option value="D部门">D部门</option>
+							
+								<option value="A部门">A部门</option>
+								<option value="B部门">B部门</option>
+					</select>
+					</td>
+					
+					
+				</tr>
+		
+			</table>
+			
+			
+			
+			<table width="100%" border="1" cellpadding=0 cellspacing=1
+				bordercolorlight=#848284 bordercolordark=#eeeeee
+				class="TABLE_STYLE1">
+				<tr class="TR_STYLE1">
+					<td class="TD_STYLE1" colspan="4">
+						选择发放酬金人员&nbsp;
+						<input type="button" name="choice" value="全选"
+							class="BUTTON_STYLE1" onclick="selAll(this.form)">
+					</td>
+				</tr>
+				
+					<input type="hidden" name="list[0].columnCN" value="I级机构名称">
+					<input type="hidden" name="list[0].columnEN" value="firstKindName">
+					<tr>
+						<td class="TD_STYLE2">
+							<input type="checkbox" name="list[0].checked" value="on"><a href="salarysendtoworkerdetails.html">张三</a>
+						</td>
+					
+				
+					<input type="hidden" name="list[1].columnCN" value="II级机构名称">
+					<input type="hidden" name="list[1].columnEN" value="secondKindName">
+					
+						<td class="TD_STYLE2">
+							<input type="checkbox" name="list[1].checked" value="on"><a href="salarysendtoworkerdetails.html">张三</a>
+						</td>
+					
+				
+					<input type="hidden" name="list[2].columnCN" value="III级机构名称">
+					<input type="hidden" name="list[2].columnEN" value="thirdKindName">
+					
+						<td class="TD_STYLE2">
+							<input type="checkbox" name="list[2].checked" value="on"><a href="salarysendtoworkerdetails.html">张三</a>
+						</td>
+					
+				
+					<input type="hidden" name="list[3].columnCN" value="档案编号">
+					<input type="hidden" name="list[3].columnEN" value="humanId">
+					
+						<td class="TD_STYLE2">
+							<input type="checkbox" name="list[3].checked" value="on"><a href="salarysendtoworkerdetails.html">张三</a>
+						</td>
+					</tr>
+				
+					<input type="hidden" name="list[4].columnCN" value="姓名">
+					<input type="hidden" name="list[4].columnEN" value="humanName">
+					<tr>
+						<td class="TD_STYLE2">
+							<input type="checkbox" name="list[4].checked" value="on"><a href="salarysendtoworkerdetails.html">张三</a>
+						</td>
+					
+				
+					<input type="hidden" name="list[5].columnCN" value="住址">
+					<input type="hidden" name="list[5].columnEN" value="humanAddress">
+					
+						<td class="TD_STYLE2">
+							<input type="checkbox" name="list[5].checked" value="on"><a href="salarysendtoworkerdetails.html">张三</a>
+						</td>
+					
+				
+					<input type="hidden" name="list[6].columnCN" value="邮编">
+					<input type="hidden" name="list[6].columnEN" value="humanPostcode">
+					
+						<td class="TD_STYLE2">
+							<input type="checkbox" name="list[6].checked" value="on"><a href="salarysendtoworkerdetails.html">张三</a>
+						</td>
+					
+				
+					<input type="hidden" name="list[7].columnCN" value="职称">
+					<input type="hidden" name="list[7].columnEN" value="humanProDesignation">
+					
+						<td class="TD_STYLE2">
+							<input type="checkbox" name="list[7].checked" value="on"><a href="salarysendtoworkerdetails.html">张三</a>
+						</td>
+					</tr>
+				
+					<input type="hidden" name="list[8].columnCN" value="职位分类名称">
+					<input type="hidden" name="list[8].columnEN" value="humanMajorKindName">
+					<tr>
+						<td class="TD_STYLE2">
+							<input type="checkbox" name="list[8].checked" value="on"><a href="salarysendtoworkerdetails.html">张三</a>
+						</td>
+					
+				
+					<input type="hidden" name="list[9].columnCN" value="职位名称">
+					<input type="hidden" name="list[9].columnEN" value="hunmaMajorName">
+					
+						<td class="TD_STYLE2">
+							<input type="checkbox" name="list[9].checked" value="on"><a href="salarysendtoworkerdetails.html">张三</a>
+						</td>
+					
+				
+					<input type="hidden" name="list[10].columnCN" value="开户银行">
+					<input type="hidden" name="list[10].columnEN" value="humanBank">
+					
+						<td class="TD_STYLE2">
+							<input type="checkbox" name="list[10].checked" value="on"><a href="salarysendtoworkerdetails.html">张三</a>
+						</td>
+					
+			
+					
+				
+				</table>
+			
+	
+		</form>
+	</body>
+</html>

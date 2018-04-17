@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+ "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant value="spring" name="struts.objectFactory"/>
+	<package name="systempkg" extends="struts-default,json-default" namespace="/">
+		<action name="systemManage" class="systemAction">
+			<result name="success1">/system/user/user_addsuccess.jsp</result>
+			<result name="error1">/system/user/register.jsp</result>
+			<result name="success2">/system/user/user_query.jsp</result>
+			<result name="success3">/system/user/user_detail.jsp</result>
+			<result name="success4">/system/user/user_update.jsp</result>
+			<result name="success5">/system/user/user_update_success.jsp</result>
+			<result name="success6">/system/user/user_delete.jsp</result>
+			<result name="success7">/system/roleset/role_add_success.jsp</result>
+			<result name="success8">/system/roleset/roleset_select.jsp</result>
+			<result name="success9">/system/roleset/roleset_delete.jsp</result>
+			<result name="success10">/system/roleset/role_delete_success.jsp</result>
+			<result name="success11">/system/roleset/role_update_success.jsp</result>
+			<result name="success12">/system/roleset/roleset_check.jsp</result>
+			<result name="success13">/system/roleset/roleset_check_success.jsp</result>
+			<result name="success14">/system/role/role_addsuccess.jsp</result>
+			<result name="success15">/system/role/role.jsp</result>
+			<result name="success16">/system/role/role_updatasuccess.jsp</result>
+			<result name="success17">/system/role/role_delete_success.jsp</result>
+			<result name="success18">/system/powerset/new_authodesign_add.jsp</result>
+			<result name="success19">/system/powerset/new_authodesign_add_success.jsp</result>
+			<result name="success20">/system/powerset/new_auth_design.jsp</result>
+			<result name="success21">/system/powerset/new_authodesign_update._successs.jsp</result>
+			<result name="success22">/system/powerset/new_authodesign_delete._successs.jsp</result>
+			<result name="success23">/system/change_password/change_password.jsp</result>
+			<result name="success24">/system/change_password/change_password_success.jsp</result>
+			<result name="success25" type="json">
+				<param name="root">userMsg</param>
+			</result>
+			<result name="success26" type="json">
+				<param name="root">rolelst</param>
+			</result>
+		</action>
+	</package>
+	
+</struts>

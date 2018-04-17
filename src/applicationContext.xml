@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	 xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+   xmlns:tx="http://www.springframework.org/schema/tx"
+   xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/aop/spring-tx-2.5.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/aop/spring-context-2.5.xsd ">
+
+	<import resource="com/zking/hr/xml/spring/login/applicationContext_login.xml"/>
+	<import resource="com/zking/hr/xml/spring/clickMenu/applicationContext_clickMenu.xml"/>
+	<import resource="com/zking/hr/xml/spring/register/applicationContext_register.xml"/>
+	<import resource="com/zking/hr/xml/spring/customization/applicationContext_customization.xml"/>
+	<import resource="com/zking/hr/xml/spring/customization/applicationContext_salaryManage.xml"/>
+	<import resource="com/zking/hr/xml/spring/salaryStandManage/application_salaryStandManage.xml"/>
+	<import resource="com/zking/hr/xml/spring/salaryIssueMange/applicationContext_salIssueManaction.xml"/>
+	<import resource="com/zking/hr/xml/spring/transferManage/appliacation_transferManage.xml"/>
+	<import resource="com/zking/hr/xml/spring/system/application_system.xml" />
+	<import resource="com/zking/hr/xml/spring/renli/applicationContext_renli.xml"/>
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="username" value="huang"/>
+		<property name="password" value="1993"/>
+		<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:orcl"/>
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+	</bean>					    
+	<bean id="sqlMap" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocation">
+			<value>
+				classpath:SqlMapConfig.xml
+			</value>
+		</property>
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+
+
+
+	<bean id="salaryTfiledao" class="com.zking.hr.dao.impl.TFiles.TFilesDaoImpl">
+		<property name="sqlMapClient" ref="sqlMap"></property>
+	</bean>
+	
+	<bean id="organDaoimpl" class="com.zking.hr.dao.impl.TOrganization.TOrganizationDaoimpl">
+		<property name="sqlMapClient" ref="sqlMap"></property>
+	</bean>
+	<bean id="standdaoimpl" class="com.zking.hr.dao.impl.TSalarystanderd.TSalarystanderdDaoimpl">
+		<property name="sqlMapClient" ref="sqlMap"></property>
+	</bean>
+	<bean id="standprojectdaoimpl" class="com.zking.hr.dao.impl.TSalarystandProject.TSalarystandProjectDaoimpl">
+		<property name="sqlMapClient" ref="sqlMap"></property>
+	</bean>
+	<bean id="salarypayAdddao" class="com.zking.hr.dao.impl.TSalaryPayOffAdd.TSalaryPayOffAddDaoImpl">
+		<property name="sqlMapClient" ref="sqlMap"></property>
+	</bean>
+	<bean id="logindaoimpl" class="com.zking.hr.dao.impl.TUser.TUserDaoimpl">
+		<property name="sqlMapClient" ref="sqlMap"></property>
+	</bean>
+	<bean id="loginpermissiondaoimpl" class="com.zking.hr.dao.impl.TPermission.TPermissionDaoimpl">
+		<property name="sqlMapClient" ref="sqlMap"></property>
+	</bean>
+	
+	<bean id="clickpermissionDao" class="com.zking.hr.dao.impl.TPermission.TPermissionDaoimpl">
+		<property name="sqlMapClient" ref="sqlMap"></property>
+	</bean>
+	
+	<bean id="transferdao" class="com.zking.hr.dao.impl.TStafftransfer.TStafftransferDaoimpl">
+		<property name="sqlMapClient" ref="sqlMap"></property>
+	</bean>
+	
+	
+		
+	<bean id="salaryProdao" class="com.zking.hr.dao.impl.TSalaryproject.TSalaryprojectDaoimpl">
+		<property name="sqlMapClient" ref="sqlMap"></property>
+	</bean>
+	<bean id="orderPerdao" class="com.zking.hr.dao.impl.TOrderPerformance.TOrderPerformanceDaoimpl">
+		<property name="sqlMapClient" ref="sqlMap"></property>
+	</bean>
+	<bean id="salaryPaydao" class="com.zking.hr.dao.impl.TSalarypayoff.TSalarypayoffDaoimpl">
+		<property name="sqlMapClient" ref="sqlMap"></property>
+	</bean>
+	
+	<bean id="registerDao" class="com.zking.hr.dao.impl.TUser.TUserDaoimpl">
+		<property name="sqlMapClient" ref="sqlMap"></property>
+	</bean>
+	
+	<bean id="manpowerDao" class="com.zking.hr.dao.impl.TOrganization.TOrganizationDaoimpl">
+		<property name="sqlMapClient" ref="sqlMap"></property>
+	</bean>
+	<bean id="professiondao" class="com.zking.hr.dao.impl.TProfessional.TProfessionalDaoimpl">
+		<property name="sqlMapClient" ref="sqlMap"></property>
+	</bean>
+	<bean id="positiontdao" class="com.zking.hr.dao.impl.TPositiontype.TPositiontypeDaoimpl">
+		<property name="sqlMapClient" ref="sqlMap"></property>
+	</bean>
+	<bean id="positiondao" class="com.zking.hr.dao.impl.TPosition.TPositionDaoimpl">
+		<property name="sqlMapClient" ref="sqlMap"></property>
+	</bean>
+	<bean id="publicPropertydao" class="com.zking.hr.dao.impl.TPublicproperty.TPublicpropertyDaoimpl">
+		<property name="sqlMapClient" ref="sqlMap"></property>
+	</bean>
+	
+	<bean id="roledaoimpl" class="com.zking.hr.dao.impl.TRole.TRoleDaoimpl">
+		<property name="sqlMapClient" ref="sqlMap"></property>
+	</bean>
+	
+	<bean id="rolepermissimpl" class="com.zking.hr.dao.impl.TRolePermission.TRolePermissionDaoimpl">
+		<property name="sqlMapClient" ref="sqlMap"></property>
+	</bean>
+	
+	
+	
+
+
+
+
+
+
+</beans>					   

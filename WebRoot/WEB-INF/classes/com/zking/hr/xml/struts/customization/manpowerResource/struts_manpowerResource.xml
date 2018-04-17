@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+ "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.objectFactory" value="spring"></constant>
+	<!-- 机构Action -->
+	<package name="cust_manpowerpkg" extends="struts-default,json-default" namespace="/clineset-orginzation">
+		<!-- 机构数据加载 -->
+		<action name="manpower" class="manpoweraction">
+			<result name="success">/clineset-orginzation/first_kind.jsp</result>
+			<result name="oragan3">/clineset-orginzation/third_kind.jsp</result>
+			<result name="oragan2">/clineset-orginzation/second_kind.jsp</result>
+		</action>
+		
+		<!-- 机构删除 -->
+		<action name="deleteOrgan1" class="manpoweraction">
+			<result name="deleteORSuccess">/clineset-orginzation/first_kind_delete_success.jsp</result>
+		</action>
+		<action name="deleteOrgan2" class="manpoweraction">
+			<result name="deleteORSuccess">/clineset-orginzation/second_kind_delete_success.jsp</result>
+		</action>
+		<action name="deleteOrgan3" class="manpoweraction">
+			<result name="deleteORSuccess">/clineset-orginzation/third_kind_delete_success.jsp</result>
+		</action>
+		
+		<!-- 机构添加显示上级机构名 -->
+		<action name="updateLoad" class="manpoweraction">
+			<result name="success">/clineset-orginzation/second_kind_register.jsp</result>
+		</action>
+		<action name="updateLoad2" class="manpoweraction">
+			<result name="success">/clineset-orginzation/third_kind_register.jsp</result>
+		</action>
+		
+		<!-- 机构添加 -->
+		<action name="insertOrgan1" class="manpoweraction" >
+			<result name="insertORSuccess">/clineset-orginzation/first_kind_register_success.jsp</result>
+			<result name="userName" type="json">
+				<param name="root">fileName</param>
+			</result>
+			
+		</action>
+		<action name="insertOrgan2" class="manpoweraction" >
+			<result name="insertORSuccess">/clineset-orginzation/second_kind_register_success.jsp</result>
+		</action>
+		<action name="insertOrgan3" class="manpoweraction" >
+			<result name="insertORSuccess">/clineset-orginzation/third_kind_register_success.jsp</result>
+		</action>
+		
+		<!-- 机构修改 -->
+		<action name="changeLoad1" class="manpoweraction">
+			<result name="success">/clineset-orginzation/first_kind_change.jsp</result>
+		</action>
+		<action name="changeOra1" class="manpoweraction">
+			<result name="success">/clineset-orginzation/first_kind_change_success.jsp</result>
+		</action>
+		<action name="changeLoad2" class="manpoweraction">
+			<result name="success">/clineset-orginzation/second_kind_change.jsp</result>
+		</action>
+		<action name="changeOra2" class="manpoweraction">
+			<result name="success">/clineset-orginzation/second_kind_change_success.jsp</result>
+		</action>
+		<action name="changeLoad3" class="manpoweraction">
+			<result name="success">/clineset-orginzation/third_kind_change.jsp</result>
+		</action>
+		<action name="changeOra3" class="manpoweraction">
+			<result name="success">/clineset-orginzation/third_kind_change_success.jsp</result>
+		</action>
+	</package>
+	
+	
+	<!-- 职称Action -->
+	<package name="profeesionpkg" extends="struts-default" namespace="/clineset-profession">
+		<!-- 职称数据加载 -->
+		<action name="profession" class="professionaction">
+			<result name="success">/clineset-profession/profession_design.jsp</result>
+		</action>
+		<!-- 职称删除 -->
+		<action name="professionDelete" class="professionaction">
+			<result type="redirect" name="success">/clineset-profession/profession!loadProfession</result>
+		</action>
+		<!-- 职称添加 -->
+		<action name="profeesionInsert" class="professionaction">
+			<result type="redirect" name="success">/clineset-profession/profession!loadProfession</result>
+		</action>
+	</package>
+	
+	
+	
+	<!-- 职位分类Action -->
+	<package name="positionTpkg" extends="struts-default" namespace="/clineset-profession">
+		<!-- 职位分类数据加载 -->
+		<action name="positionT" class="positionTaction">
+			<result name="success">/clineset-profession/major_kind.jsp</result>
+		</action>
+		<!-- 职位分类删除 -->
+		<action name="positionTDelete" class="positionTaction">
+			<result type="redirect" name="success">/clineset-profession/positionT!loadPositionType</result>
+		</action>
+		<!-- 职位分类添加 -->
+		<action name="positionTInsert" class="positionTaction">
+			<result type="redirect" name="success">/clineset-profession/positionT!loadPositionType</result>
+		</action>
+	</package>
+	
+	<!-- 职位Action -->
+	<package name="positionpkg" extends="struts-default" namespace="/clineset-profession">
+		<!-- 职位数据加载 -->
+		<action name="position" class="positionaction">
+			<result name="success">/clineset-profession/major.jsp</result>
+		</action>
+		<!-- 职位删除 -->
+		<action name="delPosition" class="positionaction">
+			<result type="redirect" name="success">/clineset-profession/position!loadPosition</result>
+		</action>
+		<!-- 职位添加 -->
+		<action name="insPosition" class="positionaction">
+			<result type="redirect" name="success">/clineset-profession/position!loadPosition</result>
+		</action>
+		<!-- 职位添加时职位分类查询 -->
+		<action name="queryInPosition" class="positionaction">
+			<result name="success">/clineset-profession/major_add.jsp</result>
+		</action>
+	</package>
+	
+	<!-- 公共属性Action -->
+	<package name="publicPropkg" extends="struts-default" namespace="/clineset-profession">
+		<!-- 公共属性数据加载 -->
+		<action name="publicPro" class="publicPropertyaction">
+			<result name="success">/clineset-profession/public_char.jsp</result>
+		</action>
+		<!-- 公共属性删除 -->
+		<action name="delPublicPro" class="publicPropertyaction">
+			<result type="redirect" name="success">/clineset-profession/publicPro!loadPublicProperty</result>
+		</action>
+		<!-- 公共属性添加 -->
+		<action name="insPublicPro" class="publicPropertyaction">
+			<result type="redirect" name="success">/clineset-profession/publicPro!loadPublicProperty</result>
+		</action>
+	</package>
+	
+	
+	
+</struts>

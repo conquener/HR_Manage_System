@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+ "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="TProfessional" type="com.zking.hr.pojo.TProfessional"></typeAlias>
+		<delete id="deleteTProfessional" parameterClass="java.lang.Integer">
+		<![CDATA[
+			delete from Tprofessional where Professionalid=#professionalId# 
+		]]>
+	</delete>
+	
+	<insert id="insertTProfessional" parameterClass="TProfessional">
+	<selectKey keyProperty="professionalId" resultClass="java.lang.Integer">
+			select max(Professionalid)+1 from Tprofessional
+	</selectKey>
+		<![CDATA[
+			insert into Tprofessional(Professionalid,Professionalname,remark) 
+					values(#professionalId#,#professionalName#,#remark#)
+		]]>
+	</insert>
+	
+	<select id="queryTProfessional" parameterClass="com.zking.hr.utils.pageUtils.PageUtils" resultClass="TProfessional">
+		select professionalId,professionalName from (select rowNum RN,professionalId,professionalName from TProfessional)
+		where RN BETWEEN #beginRow# AND #endRow# 
+	</select>
+	
+	<select id="TProfessionalRowCount" resultClass="java.lang.Integer">
+		select count(1) from TProfessional
+	</select>
+	
+	<select id="queryTProfessionalall" resultClass="TProfessional">
+		select professionalId,professionalName from TProfessional 
+	</select>
+	
+</sqlMap>

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+ "http://ibatis.apache.org/dtd/sql-map-2.dtd"
+>
+
+<sqlMap>
+	<typeAlias alias="staff" type="com.zking.hr.pojo.TStafftransfer"></typeAlias>
+	<typeAlias alias="viewStatu" type="com.zking.hr.view.pojo.TStafftransfer.UpdateStatus"></typeAlias>
+	<typeAlias alias="pageUtil" type="com.zking.hr.utils.pageUtils.PageUtils"></typeAlias>
+	<typeAlias alias="queryTime" type="com.zking.hr.view.pojo.TStafftransfer.QueryTime"></typeAlias>
+	<insert id="insertTstaff" parameterClass="staff">
+		<selectKey keyProperty="transferid" resultClass="java.lang.Integer">
+			select
+			max(TransferId)+1 from TStafftransfer
+		</selectKey>
+		<![CDATA[
+			insert into TStafftransfer(transferid,
+			Staffid,Registerdate,Transferdate,transactionnature,
+			BeforeTransactiondepartment,Latertransactiondepartment,
+			Beforetransactionpost,latertransactionpost,Beforesalary,
+			Latersalary,Beforework,Lsterwork,Viewsstatus,Departmentviews,
+			Deputymanagerviews,Personneldepartmentviews,dotransferdate,Presidentviews,remark) 
+		  	values(
+		  	#transferid#,#staffid#,#registerdate#,#transferdate#,#transactionnature#,
+			#beforeTransactionDepartment#,#laterTransactionDepartment#,#beforeTransactionPost#,
+			#laterTransactionPost#,#beforeSalary#,#laterSalary#,#beforeWork#,#lsterWork#,
+			#viewsStatus#,#departmentViews#,
+			#deputymanagerViews#,#personneldepartmentViews#,
+			#dotransferdate#,#presidentViews#,#remark#
+		  	)
+		]]>
+	</insert>
+	
+	<update id="updateTstaff" parameterClass="staff">
+			update TStafftransfer set 
+			StaffId=#staffid#,RegisterDate=#registerdate#,TransferDate=#transferdate#,transactionNature=#transactionnature#,
+			BeforeTransactionDepartment=#beforeTransactionDepartment#,LaterTransactionDepartment=#laterTransactionDepartment#,
+			BeforeTransactionPost=#beforeTransactionPost#,latertransactionpost=#laterTransactionPost#,Beforesalary=#beforeSalary#,
+			Latersalary=#laterSalary#,Beforework=#beforeWork#,Lsterwork=#lsterWork#,Viewsstatus=#viewsStatus#,Departmentviews=#departmentViews#,
+			Deputymanagerviews=#deputymanagerViews#,Personneldepartmentviews=#personneldepartmentViews#,dotransferdate=#dotransferdate#,Presidentviews=#presidentViews#,remark=#remark#
+			where transferId=#transferid# 
+	</update>
+	
+	<update id="updateTstaffstatus" parameterClass="viewStatu">
+		update TStafftransfer set Viewsstatus=#status# where transferId=#id#
+	</update>
+	
+	
+	<delete id="deleteTstaff" parameterClass="java.lang.Integer">
+		delete from TStafftransfer where  transferId=#transferid#
+	</delete>
+	
+	
+	<select id="queryListStaff" parameterClass="pageUtil" resultClass="staff">
+		select transferid,
+			Staffid,Registerdate,Transferdate,transactionnature,
+			BeforeTransactiondepartment,Latertransactiondepartment,
+			Beforetransactionpost,latertransactionpost,Beforesalary,
+			Latersalary,Beforework,Lsterwork,Viewsstatus,Departmentviews,
+			Deputymanagerviews,Personneldepartmentviews,dotransferdate,Presidentviews,remark
+			from (select rownum rn,transferid,
+			Staffid,Registerdate,Transferdate,transactionnature,
+			BeforeTransactiondepartment,Latertransactiondepartment,
+			Beforetransactionpost,latertransactionpost,Beforesalary,
+			Latersalary,Beforework,Lsterwork,Viewsstatus,Departmentviews,
+			Deputymanagerviews,Personneldepartmentviews,dotransferdate,Presidentviews,remark
+			 from TStafftransfer) 
+			 where rn between #beginRow# and #endRow#
+	</select>
+	
+	<select id="countrowstaff" resultClass="java.lang.Integer" >
+		select count(1) from TStafftransfer
+	</select>
+	
+	<select id="queryStaffId" parameterClass="java.lang.Integer" resultClass="staff">
+		select transferid,
+			Staffid,Registerdate,Transferdate,transactionnature,
+			BeforeTransactiondepartment,Latertransactiondepartment,
+			Beforetransactionpost,latertransactionpost,Beforesalary,
+			Latersalary,Beforework,Lsterwork,Viewsstatus,Departmentviews,
+			Deputymanagerviews,Personneldepartmentviews,dotransferdate,Presidentviews,remark
+			from TStafftransfer
+			where transferid=#id#
+ 			
+	</select>
+	
+	<select id="queryListStaffstatu" parameterClass="pageUtil" resultClass="staff">
+		select transferid,
+			Staffid,Registerdate,Transferdate,transactionnature,
+			BeforeTransactiondepartment,Latertransactiondepartment,
+			Beforetransactionpost,latertransactionpost,Beforesalary,
+			Latersalary,Beforework,Lsterwork,Viewsstatus,Departmentviews,
+			Deputymanagerviews,Personneldepartmentviews,dotransferdate,Presidentviews,remark
+			from (select rownum rn,transferid,
+			Staffid,Registerdate,Transferdate,transactionnature,
+			BeforeTransactiondepartment,Latertransactiondepartment,
+			Beforetransactionpost,latertransactionpost,Beforesalary,
+			Latersalary,Beforework,Lsterwork,Viewsstatus,Departmentviews,
+			Deputymanagerviews,Personneldepartmentviews,dotransferdate,Presidentviews,remark
+			 from TStafftransfer) 
+			 where Viewsstatus=1 and rn between #beginRow# and #endRow#
+	</select>
+	
+	<select id="countrowstaffStatu" resultClass="java.lang.Integer" >
+		select count(1) from TStafftransfer where Viewsstatus=1
+	</select>
+	
+	
+	<select id="countrowstaffName" parameterClass="queryTime" resultClass="java.lang.Integer">
+		select count(*)  from tstafftransfer t join tfiles f on t.staffid = f.filesfilesid
+          where  1=1 
+          <isNotNull property="sName">
+		  	 	<isNotEqual  prepend="and" property="sName" compareValue="">
+         			 f.filesUserName like '%'||#sName#||'%'
+          		</isNotEqual>
+		 	 </isNotNull>
+          	<isNotNull property="beginTime">
+		  	 	<isNotEqual  prepend="and" property="beginTime" compareValue="">
+		  	 		t.Transferdate<![CDATA[ >=]]> to_date(#beginTime#,'YYYY-MM-DD') 
+		  	 	</isNotEqual>
+		  	 </isNotNull>
+		 	 <isNotNull property="endTime">
+		  		 <isNotEqual  prepend="and" property="beginTime" compareValue="">
+		  	 		t.Transferdate<![CDATA[<=]]>to_date(#endTime#,'YYYY-MM-DD')
+		  		 </isNotEqual>
+		  	 </isNotNull>
+	</select>	
+	
+	
+<!-- 	<select id="queryListStaffName" parameterClass="queryTime" resultClass="staff">
+		select  s.transferid,
+       s.Staffid, s.Registerdate, s.Transferdate, s.transactionnature,
+       s.BeforeTransactiondepartment, s.Latertransactiondepartment,
+       s.Beforetransactionpost, s.latertransactionpost, s.Beforesalary,
+       s.Latersalary, s.Beforework, s.Lsterwork, s.Viewsstatus, s.Departmentviews,
+		s.Deputymanagerviews, s.Personneldepartmentviews, s.dotransferdate, s.Presidentviews, s.remark 
+		  from 
+		  	(select rownum rn,TStafftransfer.* from TStafftransfer) s join Tfiles f  on s.STAFFID=f.FILESUSERID where 1=1
+		  	 <isNotNull property="sName">
+		  	 	<isNotEqual  prepend="and" property="sName" compareValue="">
+		  	 		filesUserName like '%'||#sName#||'%' 
+		  	 	</isNotEqual>
+		  	 </isNotNull>
+		  	<isNotNull property="beginTime">
+		  	 	<isNotEqual  prepend="and" property="beginTime" compareValue="">
+		  	 s.Transferdate<![CDATA[ >=]]> to_date(#beginTime#,'YYYY-MM-DD') 
+		  	 	</isNotEqual>
+		  	 </isNotNull>
+		  	 <isNotNull property="endTime">
+		  	 	<isNotEqual  prepend="and" property="beginTime" compareValue="">
+		  	 s.Transferdate<![CDATA[<=]]>to_date(#endTime#,'YYYY-MM-DD')
+		  	 	</isNotEqual>
+		  	 </isNotNull>
+		  	  and rn between #beginRow# and #endRow#
+	</select> -->
+	
+	<resultMap id="queryStaffNamemap" class="java.util.HashMap" >
+		<result property="transferid" javaType="java.lang.Integer" />
+		<result property="filesUserName" javaType="java.lang.String" />
+		<result property="Transferdate" javaType="java.sql.Date" />
+		<result property="transactionnature" javaType="java.lang.String" />
+		<result property="Viewsstatus" javaType="java.lang.Integer" />
+	</resultMap>
+	
+	<select id="queryListStaffName" parameterClass="queryTime" resultMap="queryStaffNamemap">
+	  select s.transferid,s.filesUserName,s.Transferdate, s.transactionnature,s.Viewsstatus from  
+	   (  select t.*,rownum rn,f.filesusername  from tstafftransfer t join tfiles f on t.staffid = f.filesfilesid
+          where  1=1 
+          <isNotNull property="sName">
+		  	 	<isNotEqual  prepend="and" property="sName" compareValue="">
+         			 f.filesUserName like '%'||#sName#||'%'
+          		</isNotEqual>
+		 	 </isNotNull>
+          	<isNotNull property="beginTime">
+		  	 	<isNotEqual  prepend="and" property="beginTime" compareValue="">
+		  	 		t.Transferdate<![CDATA[ >=]]> to_date(#beginTime#,'YYYY-MM-DD') 
+		  	 	</isNotEqual>
+		  	 </isNotNull>
+		 	 <isNotNull property="endTime">
+		  		 <isNotEqual  prepend="and" property="beginTime" compareValue="">
+		  	 		t.Transferdate<![CDATA[<=]]>to_date(#endTime#,'YYYY-MM-DD')
+		  		 </isNotEqual>
+		  	 </isNotNull>
+          ) s
+          where rn between #beginRow# and #endRow#
+	</select>
+	<select id="queryListStaffid" resultClass="java.lang.Integer">
+		select staffid
+		  from 
+		  	TStafftransfer 
+		  	where viewsStatus = 1
+	</select>	
+	
+	<select id="querybystaffid" parameterClass="java.lang.Integer" resultClass="staff">
+		select transferid,
+			Staffid,Registerdate,Transferdate,transactionnature,
+			BeforeTransactiondepartment,Latertransactiondepartment,
+			Beforetransactionpost,latertransactionpost,Beforesalary,
+			Latersalary,Beforework,Lsterwork,Viewsstatus,Departmentviews,
+			Deputymanagerviews,Personneldepartmentviews,dotransferdate,Presidentviews,remark
+		from TStafftransfer
+			where 	Staffid=#staffid#
+	</select>
+	
+</sqlMap>
+

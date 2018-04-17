@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+ "http://ibatis.apache.org/dtd/sql-map-2.dtd"
+>
+
+<sqlMap>
+	<typeAlias alias="salaystand" type="com.zking.hr.pojo.TSalarystanderd" />
+	<typeAlias alias="pageUtil" type="com.zking.hr.utils.pageUtils.PageUtils" />
+	<insert id="insertsalaystand" parameterClass="salaystand">
+		<selectKey keyProperty="salarystanderdId" resultClass="java.lang.Integer">
+			select
+			max(SalarystanderdId)+1 from Tsalarystanderd
+		</selectKey>
+	<![CDATA[
+		insert into Tsalarystanderd(SalarystanderdId,SalarystanderdName,Salarysummoney,maker,register,Registertime,Commissiontype,SalaryStandcheck,remark)
+		 values(#salarystanderdId#,#salarystanderdName#,#salarySummoney#,#maker#,#register#,#registertime#,#commissiontype#,#salarystandCheck#,#remark#)
+		 ]]>
+	</insert>
+
+	<update id="updatesalaystand" parameterClass="salaystand">
+		update
+		Tsalarystanderd set
+		Salarystanderdname=#salarystanderdName#,Salarysummoney=#salarySummoney#,
+		maker=#maker#,register=#register#,Registertime=#registertime#,Commissiontype=#commissiontype#,SalaryStandcheck=#salarystandCheck#,remark=#remark#
+		where Salarystanderdid=#salarystanderdId#
+
+	</update>
+
+	<update id="updatesalaystandstatus" parameterClass="java.lang.Integer">
+		update
+		Tsalarystanderd set SalaryStandcheck=2
+		where Salarystanderdid=#salarystanderdId#
+
+	</update>
+
+	<delete id="deletesalaystand" parameterClass="java.lang.Integer">
+		delete from
+		Tsalarystanderd where Salarystanderdid=#salarystanderdId#
+	</delete>
+
+	<select id="countrowtstp" resultClass="java.lang.Integer">
+		select count(1) from Tsalarystanderd
+	</select>
+
+	<select id="queryListtstp" parameterClass="pageUtil"
+		resultClass="salaystand">
+		select
+		Salarystanderdid,Salarystanderdname,Salarysummoney,maker,register,Registertime,Commissiontype,SalaryStandcheck,remark
+		from (select rownum rn,Tsalarystanderd.* from Tsalarystanderd)
+		where rn
+		between #beginRow# and #endRow#
+	</select>
+
+
+	<select id="countrowtstpstatus" resultClass="java.lang.Integer">
+		select count(1) from Tsalarystanderd where SalaryStandcheck=1
+	</select>
+	<select id="queryListtstpstatus" parameterClass="pageUtil"
+		resultClass="salaystand">
+		select
+		Salarystanderdid,Salarystanderdname,Salarysummoney,maker,register,Registertime,Commissiontype,SalaryStandcheck,remark
+		from (select rownum rn,Tsalarystanderd.* from Tsalarystanderd)
+		where
+		SalaryStandcheck=1 and rn between #beginRow# and #endRow#
+	</select>
+
+
+	<typeAlias alias="qtsstime"
+		type="com.zking.hr.view.pojo.Salarystanderd.QueryTimeName"></typeAlias>
+
+
+	<select id="countrowtss" resultClass="java.lang.Integer"
+		parameterClass="qtsstime">
+		select count(1) from Tsalarystanderd
+		where 1=1
+		<dynamic>
+			<isNotNull property="begintime">
+				<isNotEqual property="begintime" prepend="and"
+					compareValue="">
+					RegisterTime <![CDATA[>=]]>
+					to_date(#begintime#,'yyyy-mm-dd')
+				</isNotEqual>
+			</isNotNull>
+			<isNotNull property="endtime">
+				<isNotEqual property="endtime" prepend="and"
+					compareValue="">
+					RegisterTime <![CDATA[<=]]>
+					to_date(#endtime#,'yyyy-mm-dd')
+				</isNotEqual>
+			</isNotNull>
+			<isNotNull property="salaryStandName">
+				<isNotEqual property="salaryStandName" prepend="and"
+					compareValue="">
+					SalaryStanderdname like '%'||#salaryStandName#||'%'
+				</isNotEqual>
+			</isNotNull>
+		</dynamic>
+	</select>
+
+
+	<select id="queryListtss" resultClass="salaystand"
+		parameterClass="qtsstime">
+		select
+		Salarystanderdid,Salarystanderdname,Salarysummoney,maker,register,Registertime,Commissiontype,SalaryStandcheck,remark
+		from (select rownum
+		rn,Salarystanderdid,Salarystanderdname,Salarysummoney,maker,register,Registertime,Commissiontype,SalaryStandcheck,remark
+		from Tsalarystanderd
+		where 1=1
+		<isNotNull property="begintime">
+			<isNotEqual property="begintime" prepend="and"
+				compareValue="">
+				RegisterTime <![CDATA[>=]]>
+				to_date(#begintime#,'yyyy-mm-dd')
+			</isNotEqual>
+		</isNotNull>
+		<isNotNull property="endtime">
+			<isNotEqual property="endtime" prepend="and" compareValue="">
+				RegisterTime <![CDATA[<=]]>
+				to_date(#endtime#,'yyyy-mm-dd')
+			</isNotEqual>
+		</isNotNull>
+		<isNotNull property="salaryStandName">
+			<isNotEqual property="salaryStandName" prepend="and"
+				compareValue="">
+				SalaryStanderdname like '%'||#salaryStandName#||'%'
+			</isNotEqual>
+		</isNotNull>
+		)where  rn between #beginRow# and #endRow#
+		order by Salarystanderdid
+	</select>
+	<select id="queryListtstpsid" parameterClass="java.lang.Integer"
+		resultClass="salaystand">
+		select
+		Salarystanderdid,Salarystanderdname,Salarysummoney,maker,register,Registertime,Commissiontype,SalaryStandcheck,remark
+		from Tsalarystanderd
+		where Salarystanderdid=#id#
+	</select>
+	<select id="queryStanderAll" resultClass="salaystand">
+		select
+		Salarystanderdid,Salarystanderdname,Salarysummoney,maker,register,Registertime,Commissiontype,SalaryStandcheck,remark
+		from Tsalarystanderd
+	</select>
+
+
+</sqlMap>

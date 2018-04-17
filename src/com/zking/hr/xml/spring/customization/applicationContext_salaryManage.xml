@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+					    http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="salaryManagebiz" class="com.zking.hr.biz.impl.cuntomization.salaryManage.SalaryManageBizImpl">
+		<property name="orderPerDao" ref="orderPerdao"/>
+		<property name="salaryProDao" ref="salaryProdao"/>
+		<property name="salaryPayDao" ref="salaryPaydao"/>
+	</bean>
+	<bean id="orderPeraction" class="com.zking.hr.view.contorl.action.customization.salaryManage.orderPerAction">
+		<property name="salaryManageBiz" ref="salaryManagebiz"></property>
+	</bean>
+	<bean id="salaryProaction" class="com.zking.hr.view.contorl.action.customization.salaryManage.salaryProAction">
+		<property name="salaryManageBiz" ref="salaryManagebiz"></property>
+	</bean>
+	<bean id="salaryPayaction" class="com.zking.hr.view.contorl.action.customization.salaryManage.salaryPayAction">
+		<property name="salaryManageBiz" ref="salaryManagebiz"></property>
+	</bean>
+</beans>

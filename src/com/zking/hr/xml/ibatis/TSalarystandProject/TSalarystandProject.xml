@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+ "http://ibatis.apache.org/dtd/sql-map-2.dtd"
+>
+<sqlMap>
+	<typeAlias alias="salarystand" type="com.zking.hr.pojo.TSalarystandProject"/>
+	<typeAlias alias="pageUtil" type="com.zking.hr.utils.pageUtils.PageUtils"></typeAlias>
+	<insert id="insertsalaystandP" parameterClass="salarystand">
+		<![CDATA[
+		insert into TsalaryStandProject(Salarystanderdid,Salaryprojectname,Salaryprojectmoney,SalaryProjectID,remark)
+		 values(#salarystanderdId#,#salaryprojectName#,#salaryprojectMoney#,#salaryprojectId#,#remark#)
+		 ]]>
+	</insert>
+	
+	
+	<update id="updatesalaystandP" parameterClass="salarystand">
+		update TsalaryStandProject set 
+		Salaryprojectmoney=#salaryprojectMoney#,remark=#remark#
+		where Salarystanderdid=#salarystanderdId# and SalaryProjectID=#salaryprojectId#
+	</update>
+	
+	<delete id="deletesalaystandP" parameterClass="java.lang.Integer">
+		delete from TsalaryStandProject where Salarystanderdid=#salarystanderdId#
+	</delete>
+	
+	<select id="queryListtssp" parameterClass="pageUtil" resultClass="salarystand">
+		select Salarystanderdid,Salaryprojectname,Salaryprojectmoney,SalaryProjectID,remark
+			from (select rownum rn,TsalaryStandProject.* from TsalaryStandProject)
+				where rn between #beginRow# and #endRow#
+	
+	</select>
+	
+	<select id="countrowtssp" resultClass="java.lang.Integer" >
+		select count(1) from TsalaryStandProject
+	</select>
+	
+	<select id="queryListtsspStand" parameterClass="java.lang.Integer" resultClass="salarystand">
+		select Salarystanderdid,Salaryprojectname,Salaryprojectmoney,SalaryProjectID,remark
+			from  TsalaryStandProject
+				where Salarystanderdid = #standId#
+	</select>
+
+
+</sqlMap>

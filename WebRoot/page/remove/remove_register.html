@@ -1,0 +1,225 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+		<link rel="stylesheet" href="table.css" type="text/css">
+		<link rel="stylesheet" type="text/css" media="all"
+			href="javascript/calendar/calendar-win2k-cold-1.css">
+		<script type="text/javascript" src="javascript/calendar/cal.js"></script>
+		<script type="text/javascript" src="javascript/comm/comm.js"></script>
+		<script type="text/javascript" src="javascript/comm/select.js"></script>
+		<script type="text/javascript">
+		var subcat = new Array(2);
+subcat[0] = ["1", "01/软件公司","01/集团","01/集团/01/软件公司"];
+subcat[1] = ["2", "02/生物科技有限公司","01/集团","01/集团/02/生物科技有限公司"];
+var subcat1 = new Array(2);
+subcat1[0] = ["1", "01/外包组","01/集团/01/软件公司"];
+subcat1[1] = ["2", "01/药店","01/集团/02/生物科技有限公司"];
+var subcat2 = new Array(8);
+subcat2[0] = ["1", "01/区域经理", "01/销售"];
+subcat2[1] = ["2", "02/总经理", "01/销售"];
+subcat2[2] = ["3", "01/项目经理", "02/软件开发"];
+subcat2[3] = ["4", "02/程序员", "02/软件开发"];
+subcat2[4] = ["5", "01/人事经理", "03/人力资源"];
+subcat2[5] = ["6", "02/专员", "03/人力资源"];
+subcat2[6] = ["7", "01/主任", "04/生产部"];
+subcat2[7] = ["8", "02/技术工人", "04/生产部"];
+
+ 		</script>
+	</head>
+
+	<body>
+		<form name="humanfileForm" method="post" action="/hr/humanfile.do">
+			<table width="100%">
+				<tr>
+					<td>
+						<font color="#0000CC">您正在做的业务是：人力资源--调动管理--调动登记 </font>
+					</td>
+				</tr>
+				
+			</table>
+			<table width="100%" border="1" cellpadding=0 cellspacing=1
+				bordercolorlight=#848284 bordercolordark=#eeeeee
+				class="TABLE_STYLE1">
+
+
+
+ <table width="75%"  border="1"   cellpadding=0 cellspacing=1 bordercolorlight=#848284 bordercolordark=#eeeeee align="center">
+   
+   <tr align="center">
+       <td  class="TD_STYLE1" width="11%"> 工号</td>
+	   <td   bgcolor="#D4F8D4"><input type="text" width="100%"  class="INPUT_STYLE2"/ ></td>
+	   <td  class="TD_STYLE1" width="11%"> 登记日期</td>
+	   <td  bgcolor="#D4F8D4"> <input type="text" width="100%" name="re_register_time"  class="INPUT_STYLE2"/ ></td>
+	   <td class="TD_STYLE1" width="11%">入职日期 </td>
+	   <td  bgcolor="#D4F8D4"> <input type="text" width="100%" name="re_entrance_time" class="INPUT_STYLE2"/ ></td>
+	   <td class="TD_STYLE1" width="11%"> 调动日期</td>
+	   <td  bgcolor="#D4F8D4"> <input type="text" width="100%" name="re_time" class="INPUT_STYLE2"/ ></td>
+	   
+   </tr>
+    <tr>
+       <td class="TD_STYLE1" width="11%"> 异动性质</td>
+	   <td colspan="7" bgcolor="#D4F8D4">
+	   &nbsp;&nbsp;&nbsp;&nbsp
+	   <input id="a" type="checkbox" />
+	   <label for="a">升职</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+	   <input id="b" type="checkbox" />
+	   <label for="b">加薪</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+	   <input id="c" type="checkbox" />
+	   <label for="c">转岗</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+	   <input id="d" type="checkbox" />
+	   <label for="d">降职</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+	   <input id="e" type="checkbox" />
+	   <label for="e">降薪</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+	   <input id="f" type="checkbox"/>
+	   <label for="f">转正</label>
+	   </td>
+	  
+	   
+   </tr>
+    <tr align="center" >
+       <td rowspan="4"bgcolor="#96E1A0" class="TD_STYLE1" width="11%"> 个<br />人<br />情<br />况</td>
+	   <td colspan="3"bgcolor="#96E1A0" class="TD_STYLE1" width="11%"> 异动前</td>
+	   <td colspan="4"bgcolor="#96E1A0" class="TD_STYLE1" width="11%"> 异动后</td>
+	 
+	   
+   </tr>
+     <tr align="center">
+       <td class="TD_STYLE1" width="11%"> 部门</td>
+	   <td colspan="2" class="TD_STYLE2">
+						<select name="item.humanProDesignation" class="SELECT_STYLE1"><option value="工程师">工程师</option>
+							
+								<option value="经理">经理</option>
+							
+								<option value="助理">助理</option>
+							
+								<option value="教授">教授</option>
+							
+								<option value="讲师">讲师</option>
+							
+								<option value="技术支持">技术支持</option></select>
+					</td>
+	    <td class="TD_STYLE1" width="11%"> 部门</td>
+	    <td colspan="2" class="TD_STYLE2">
+						<select name="item.humanProDesignation" class="SELECT_STYLE1"><option value="工程师">工程师</option>
+							
+								<option value="经理">经理</option>
+							
+								<option value="助理">助理</option>
+							
+								<option value="教授">教授</option>
+							
+								<option value="讲师">讲师</option>
+							
+								<option value="技术支持">技术支持</option></select>
+					</td>
+   </tr>
+     <tr align="center">
+         <td class="TD_STYLE1" width="11%"> 职务</td>
+	    <td colspan="2" class="TD_STYLE2">
+						<select name="item.humanProDesignation" class="SELECT_STYLE1"><option value="工程师">工程师</option>
+							
+								<option value="经理">经理</option>
+							
+								<option value="助理">助理</option>
+							
+								<option value="教授">教授</option>
+							
+								<option value="讲师">讲师</option>
+							
+								<option value="技术支持">技术支持</option></select>
+					</td>
+	    <td class="TD_STYLE1" width="11%"> 职务</td>
+	    <td colspan="2" class="TD_STYLE2">
+						<select name="item.humanProDesignation" class="SELECT_STYLE1"><option value="工程师">工程师</option>
+							
+								<option value="经理">经理</option>
+							
+								<option value="助理">助理</option>
+							
+								<option value="教授">教授</option>
+							
+								<option value="讲师">讲师</option>
+							
+								<option value="技术支持">技术支持</option></select>
+					</td>   
+   </tr>
+     <tr align="center">
+          <td class="TD_STYLE1" width="11%"> 调整前薪<br/>资构成</td>
+	   <td colspan="2" bgcolor="#D4F8D4"><input type="text" class="INPUT_STYLE2"/> </td>
+	    <td class="TD_STYLE1" width="11%"> 调整后薪<br/>资构成</td>
+	   <td colspan="3" bgcolor="#D4F8D4"> <input type="text" class="INPUT_STYLE2"/></td>	
+	   
+   </tr>
+     <tr>
+       <td rowspan="2" align="center" class="TD_STYLE1" width="11%"> 工<br/>作<br/>事<br/>项</td>
+	   <td colspan="7" class="TD_STYLE1" width="11%" >原主要负责工作情况：<br/>
+	   <textarea cols="140" row="2" name="re_primay_jop_case" class="INPUT_STYLE2"></textarea>
+		</td>
+     </tr>
+     <tr>
+      <td colspan="7" class="TD_STYLE1" width="11%" >现主要负责工作情况：<br/>
+	  <textarea cols="140" row="3" name="re_now_jop_case" class="INPUT_STYLE2"></textarea>
+	   </td>	   
+     </tr>
+  
+     <tr>
+	   <td class="TD_STYLE1" width="11%"> 部门意见</td>
+       <td colspan="7" bgcolor="#D4F8D4">
+	     <textarea cols="140" row="10" name="re_department_idea" class="INPUT_STYLE2"></textarea>
+	    </td>
+	
+	   
+   </tr>
+     <tr>
+      <td class="TD_STYLE1" width="11%"> 分管副总意见</td>
+       <td colspan="7" bgcolor="#D4F8D4">
+	     <textarea cols="140" row="10" name="re_fenfuzong_idea" class="INPUT_STYLE2"></textarea>
+	    </td>
+	  
+	   
+     </tr>
+   <tr>
+       <td rowspan="2" class="TD_STYLE1" width="11%">人事行政部意见 </td>
+	   <td bgcolor="#D4F8D4">执行调动日期：</td>
+	   <td colspan="6" ><input type="text"  name="re_personnel_implement_time" class="INPUT_STYLE2"/></td>
+	   </td>
+    </tr>
+    <tr>
+	  <td colspan="7" bgcolor="#D4F8D4">
+	     <textarea cols="140" row="10" name="re_personnel_idea" class="INPUT_STYLE2"></textarea>
+	    </td>
+	   
+    </tr>
+	 <tr>
+      <td class="TD_STYLE1" width="11%"> 总经理意见</td>
+       <td colspan="7" bgcolor="#D4F8D4">
+	     <textarea cols="140" row="10" name="re_president_idea" class="INPUT_STYLE2"></textarea>
+	    </td>
+	  
+	   
+     </tr>
+   
+   
+   
+   
+
+
+<table width="100%">
+				<tr >
+					<td align="centre">
+					<center>
+					
+						<input type="button" value="提交" class="BUTTON_STYLE1"
+							onclick="window.location.href='register_success.html'" >
+						<input type="reset" value="重填" class="BUTTON_STYLE1">
+					<center/>
+					</td>
+		        </tr>
+			</table>
+
+
+   </table>
+   </center>
+   </form>
+</body>
+</html>

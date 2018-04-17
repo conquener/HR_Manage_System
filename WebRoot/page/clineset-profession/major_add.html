@@ -1,0 +1,100 @@
+
+
+<html>
+<head>
+<link rel="stylesheet" href="css/table.css" type="text/css">
+<script type="text/javascript" >
+ function  validatea(){
+    	var pass = false;
+    		if(document.getElementById("idpro").value!=""){
+
+    			var  reg=/^[\u4e00-\u9fa5]{2,20}$/;
+    				if(reg.test( document.getElementById("idpro").value)==true){
+    					 pass=true;
+    					return pass;
+    				}else{
+    					alert("职位名称不符合规范，必须中文,长度2-20之间");
+    					return pass;
+    				}		
+    		}else{
+    			alert("职位名称不能为空");
+    			
+    			return pass;
+    		}
+}
+
+</script>
+
+</script>
+</head>
+<body>
+<form name="configfilefirstkindForm" method="post" action="/hr/configfilefirstkind.do" onsubmit="return validatea()">
+<table width="100%" >
+  <tr>
+    <td> 
+    <font color="#0000CC">您正在做的业务是：人力资源--客户化设置--人力资源档案管理设置--职位添加 </font></td>
+  </tr>
+  <tr>
+    <td align="right"><input type="submit" value="提交" class="BUTTON_STYLE1"  >
+      <input type="button" value="返回" class="BUTTON_STYLE1" onclick="window.location.href='major.html'">
+    </td>
+  </tr>
+  </table>
+  
+<table width="100%"  border="1" cellpadding=0 cellspacing=1 bordercolorlight=#848284 bordercolordark=#eeeeee class="TABLE_STYLE1">
+  <tr>
+    <td width="19%" class="TD_STYLE1">职位编号</td>
+    <td width="81%" class="TD_STYLE2"></td>
+  </tr>
+  <tr>
+    <td class="TD_STYLE1">职位名称</td>
+		
+    <td class="TD_STYLE2">
+	
+	<select name="item.humanMajorKindName" class="INPUT_STYLE1" ><option value="">&nbsp;</option>
+	
+	                           <option value="01/销售">区域经理</option>
+							
+								<option value="02/软件开发">总经理</option>
+							
+								<option value="03/人力资源">项目经理</option>
+							
+								<option value="04/生产部">程序员</option>
+								
+								<option value="03/人力资源">人事经理</option>
+							
+								<option value="04/生产部">专员</option>
+								<option value="03/人力资源">主任</option>
+							
+								<option value="04/生产部">技术人员</option>
+															
+								</select>
+	             </td>                
+	
+	
+  </tr>
+ <tr>
+    <td class="TD_STYLE1">职位分类</td>
+    <td class="TD_STYLE2"> 
+	<select name="item.humanMajorKindName" class="INPUT_STYLE1" ><option value="">&nbsp;</option>
+	
+	                           <option value="01/销售">销售</option>
+							
+								<option value="02/软件开发">/软件开发</option>
+							
+								<option value="03/人力资源">人力资源</option>
+							
+								<option value="04/生产部">生产部</option></select>
+	
+	
+	</td>
+  </tr>
+  <tr>
+    <td class="TD_STYLE1">备注</td>
+    <td class="TD_STYLE2"><input type="text" id="beizhu" name="item.firstKindName" value="" class="INPUT_STYLE1" ></td>
+  </tr>
+ 
+</table>
+</form>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+ "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="OrderPerformance" type="com.zking.hr.pojo.TOrderPerformance"></typeAlias>
+	<resultMap id="tOrderPerMap" class="java.util.HashMap">
+		<result property="opPerformanceid" javaType="java.lang.Integer" />
+		<result property="opGoalMoney" javaType="java.lang.Double" />
+		<result property="opDrawapercent" javaType="java.lang.Integer" />
+		<result property="opDrawtype" javaType="java.lang.String" />
+	</resultMap>
+	<insert id="insertOrderPerFromance">
+		<selectKey keyProperty="opPerformanceid" resultClass="java.lang.Integer">
+			select max(OPPerformanceID)+1 from torderperformance
+		</selectKey>
+	</insert>
+	<select id="queryOrderPermance" resultMap="tOrderPerMap">
+		select opPerformanceid,opGoalMoney,opDrawapercent,opDrawtype from TOrderPerformance
+	</select>
+	
+	<update id="updateOrderPerformance" parameterClass="OrderPerformance">
+		update TOrderPerformance set opPerformanceid=#opPerformanceid#,opGoalMoney=#opGoalMoney#,opDrawapercent=#opDrawapercent#,opDrawtype=#opDrawtype#,remark=#remark# 
+		where opPerformanceid=#opPerformanceid#
+	</update>
+	<select id="queryOrderPerById" resultMap="tOrderPerMap">
+		select opPerformanceid,opGoalMoney,opDrawapercent,opDrawtype from TOrderPerformance where opPerformanceid=#opPerformanceid#
+	</select>
+	
+</sqlMap>

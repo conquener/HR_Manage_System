@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	 xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+   xmlns:tx="http://www.springframework.org/schema/tx"
+   xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/aop/spring-tx-2.5.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/aop/spring-context-2.5.xsd ">
+	
+	<bean id="systemManagebiz" class="com.zking.hr.biz.impl.system.SystemManageBizImpl">
+		<property name="userdao" ref="logindaoimpl"></property>
+		<property name="roledao" ref="roledaoimpl"></property>
+		<property name="rolepermissdao" ref="rolepermissimpl"></property>
+		<property name="permissdao" ref="loginpermissiondaoimpl"></property>
+	</bean>
+	
+	
+	<bean id="systemAction" class="com.zking.hr.view.contorl.action.system.SystemManageAction">
+		<property name="systembiz" ref="systemManagebiz"></property>
+	</bean>	
+
+</beans>

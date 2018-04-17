@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+ "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap>
+	<typeAlias alias="TRole" type="com.zking.hr.pojo.TRole"></typeAlias>
+	<insert id="insertTRole" parameterClass="TRole">
+		<selectKey keyProperty="roleId" resultClass="java.lang.Integer">
+				select max(Roleid)+1 from Trole
+		</selectKey>
+			<![CDATA[
+				insert into Trole(Roleid,Rolename,remark) values(#roleId#,#roleName#,#remark#)
+			]]>
+	</insert>
+	
+	<update id="updateTRole" parameterClass="TRole">
+		update Trole set Rolename=#roleName#,Remark=#remark# where Roleid=#roleId#
+	</update>
+	
+	<delete id="deleteTRole" parameterClass="java.lang.Integer">
+		<![CDATA[
+			delete from Trole where Roleid=#roleId# 
+		]]>
+	</delete>
+	
+	<select id="queryByRoleId" parameterClass="java.lang.Integer" resultClass="TRole">
+		select roleId,roleName,remark from TRole where roleId=#roleId#
+	</select>
+	
+	<select id="queryTrole" parameterClass="com.zking.hr.utils.pageUtils.PageUtils" resultClass="TRole">
+		select roleId,roleName,remark from (select rowNum RN,roleId,roleName,remark from TRole)
+		where RN BETWEEN #beginRow# AND #endRow# 
+	</select>
+	
+	<select id="TRoleRowCount" resultClass="java.lang.Integer">
+		select count(1) from TRole
+	</select>
+	
+	<select id="queryTroleall" resultClass="TRole">
+		select roleId,roleName,remark from TRole 
+	</select>
+	
+</sqlMap>

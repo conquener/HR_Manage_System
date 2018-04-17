@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+ "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="TPublicproperty" type="com.zking.hr.pojo.TPublicproperty"></typeAlias>
+		<insert id="insertTPublicproperty" parameterClass="TPublicproperty">
+			<selectKey keyProperty="publicpropertytypeId" resultClass="java.lang.Integer">
+					select max(publicpropertytypeId)+1 from TPublicProperty
+			</selectKey>
+			<![CDATA[
+				insert into TPublicProperty(publicpropertytypeId,propertytypeName,publcipropertyName,propertyId,remark) 
+						values(#publicpropertytypeId#,#propertytypeName#,#publcipropertyName#,#propertyId#,#remark#)
+			]]>
+	</insert>
+	
+	<delete id="deleteTPublicproperty" parameterClass="java.lang.Integer">
+		<![CDATA[
+			delete from TPublicProperty where publicpropertytypeId=#publicpropertytypeId# 
+		]]>
+	</delete>
+	
+	<select id="queryTPublicProperty" parameterClass="com.zking.hr.utils.pageUtils.PageUtils" resultClass="TPublicproperty">
+		select publicpropertytypeId,propertytypeName,publcipropertyName,propertyId,remark
+		from (select rowNum RN,publicpropertytypeId,propertytypeName,publcipropertyName,propertyId,remark from TPublicproperty)
+		where RN BETWEEN #beginRow# AND #endRow# 
+	</select>
+	
+	<select id="TPublicPropertyRowCount" resultClass="java.lang.Integer">
+		select count(1) from TPublicproperty
+	</select>
+</sqlMap>

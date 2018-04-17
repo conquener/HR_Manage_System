@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<entry key="profiler.settings.instrument.empty.methods">true</entry>
+<entry key="ProfilerCPUSettings_profile_runnables">true</entry>
+<entry key="ProfilerCPUSettings_filter_type">2</entry>
+<entry key="ProfilerMemorySettings_track_every">10</entry>
+<entry key="ProfilerMemorySettings_mode">4</entry>
+<entry key="ProfilerCPUSettings_root_classes">com.zking.hr.biz.impl.SalaryStandManage.**
+com.zking.hr.biz.impl.clickMenu.**
+com.zking.hr.biz.impl.cuntomization.manpowerResource.**
+com.zking.hr.biz.impl.cuntomization.salaryManage.**
+com.zking.hr.biz.impl.login.**
+com.zking.hr.biz.impl.register.**
+com.zking.hr.biz.impl.renli.**
+com.zking.hr.biz.impl.salaryIssueManage.click.**
+com.zking.hr.biz.impl.system.**
+com.zking.hr.biz.impl.transferManage.**
+com.zking.hr.biz.interfaces.clickmuen.**
+com.zking.hr.biz.interfaces.customization.**
+com.zking.hr.biz.interfaces.login.**
+com.zking.hr.biz.interfaces.register.**
+com.zking.hr.biz.interfaces.renli.**
+com.zking.hr.biz.interfaces.salaryIssueManage.click.**
+com.zking.hr.biz.interfaces.salaryStandManage.**
+com.zking.hr.biz.interfaces.system.**
+com.zking.hr.biz.interfaces.transferManage.**
+com.zking.hr.dao.**
+com.zking.hr.pojo.**
+com.zking.hr.test.TUser.**
+com.zking.hr.utils.DateUtil.**
+com.zking.hr.utils.checkMa.**
+com.zking.hr.utils.pageUtils.**
+com.zking.hr.utils.upload.**
+com.zking.hr.view.TFiles.**
+com.zking.hr.view.contorl.action.checkMa.**
+com.zking.hr.view.contorl.action.clickMenu.**
+com.zking.hr.view.contorl.action.customization.manpowerResource.**
+com.zking.hr.view.contorl.action.customization.salaryManage.**
+com.zking.hr.view.contorl.action.login.**
+com.zking.hr.view.contorl.action.register.**
+com.zking.hr.view.contorl.action.renli.**
+com.zking.hr.view.contorl.action.salaryIssueMange.**
+com.zking.hr.view.contorl.action.salaryStandManage.**
+com.zking.hr.view.contorl.action.system.**
+com.zking.hr.view.contorl.action.transmanage.**
+com.zking.hr.view.contorl.filter.**
+com.zking.hr.view.pagepojo.**
+com.zking.hr.view.pojo.Salarystanderd.**
+com.zking.hr.view.pojo.TStafftransfer.**
+com.zking.hr.view.pojo.changpassword.**
+com.zking.hr.view.pojo.file.**
+com.zking.hr.view.pojo.level.**
+com.zking.hr.view.pojo.pageRow.**
+com.zking.hr.view.pojo.salaryquery.**
+com.zking.hr.view.pojo.user.**
+com.zking.hr.xml.ibatis.pojo.**
+</entry>
+<entry key="ProfilerCPUSettings_filter_value">com.zking.hr.biz.impl.SalaryStandManage.*,
+com.zking.hr.biz.impl.clickMenu.*,
+com.zking.hr.biz.impl.cuntomization.manpowerResource.*,
+com.zking.hr.biz.impl.cuntomization.salaryManage.*,
+com.zking.hr.biz.impl.login.*,
+com.zking.hr.biz.impl.register.*,
+com.zking.hr.biz.impl.renli.*,
+com.zking.hr.biz.impl.salaryIssueManage.click.*,
+com.zking.hr.biz.impl.system.*,
+com.zking.hr.biz.impl.transferManage.*,
+com.zking.hr.biz.interfaces.clickmuen.*,
+com.zking.hr.biz.interfaces.customization.*,
+com.zking.hr.biz.interfaces.login.*,
+com.zking.hr.biz.interfaces.register.*,
+com.zking.hr.biz.interfaces.renli.*,
+com.zking.hr.biz.interfaces.salaryIssueManage.click.*,
+com.zking.hr.biz.interfaces.salaryStandManage.*,
+com.zking.hr.biz.interfaces.system.*,
+com.zking.hr.biz.interfaces.transferManage.*,
+com.zking.hr.dao.*,
+com.zking.hr.pojo.*,
+com.zking.hr.test.TUser.*,
+com.zking.hr.utils.DateUtil.*,
+com.zking.hr.utils.checkMa.*,
+com.zking.hr.utils.pageUtils.*,
+com.zking.hr.utils.upload.*,
+com.zking.hr.view.TFiles.*,
+com.zking.hr.view.contorl.action.checkMa.*,
+com.zking.hr.view.contorl.action.clickMenu.*,
+com.zking.hr.view.contorl.action.customization.manpowerResource.*,
+com.zking.hr.view.contorl.action.customization.salaryManage.*,
+com.zking.hr.view.contorl.action.login.*,
+com.zking.hr.view.contorl.action.register.*,
+com.zking.hr.view.contorl.action.renli.*,
+com.zking.hr.view.contorl.action.salaryIssueMange.*,
+com.zking.hr.view.contorl.action.salaryStandManage.*,
+com.zking.hr.view.contorl.action.system.*,
+com.zking.hr.view.contorl.action.transmanage.*,
+com.zking.hr.view.contorl.filter.*,
+com.zking.hr.view.pagepojo.*,
+com.zking.hr.view.pojo.Salarystanderd.*,
+com.zking.hr.view.pojo.TStafftransfer.*,
+com.zking.hr.view.pojo.changpassword.*,
+com.zking.hr.view.pojo.file.*,
+com.zking.hr.view.pojo.level.*,
+com.zking.hr.view.pojo.pageRow.*,
+com.zking.hr.view.pojo.salaryquery.*,
+com.zking.hr.view.pojo.user.*,
+com.zking.hr.xml.ibatis.pojo.*</entry>
+<entry key="profiler.settings.istrument.getter.setter.methods">true</entry>
+<entry key="myeclipse.profiling.mode">0</entry>
+<entry key="ProfilerMemorySettings_stacktraces">-1</entry>
+</properties>

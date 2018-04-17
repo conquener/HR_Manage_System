@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+ "http://struts.apache.org/dtds/struts-2.1.dtd">
+ <struts>
+	<constant name="struts.objectFactory" value="spring"></constant>
+	<package name="renlipkg" extends="struts-default,json-default" namespace="/renli">
+		<action name="renlimange" class="renlimangeAction">
+			<result name="success1" type="json">
+				<param name="root">lst</param>
+			</result>
+			<result name="success2" type="json">
+				<param name="root">postType</param>
+			</result>
+			<result name="success3" type="json">
+				<param name="root">post</param>
+			</result>
+			<result name="success4" type="json">
+				<param name="root">prof</param>
+			</result>
+			<result name="success5" type="json">
+				<param name="root">ts</param>
+			</result>
+			<result name="success6" >/renli/register_choose_picture.jsp</result>
+			<result name="success7" >/renli/human_register.jsp</result>
+			<result name="success8">/renli/query_list.jsp</result>
+			<result name="success9">/renli/update_list.jsp</result>
+			<result name="success10">/renli/query_check.jsp</result>
+			<result name="success11">/renli/update_check.jsp</result>
+			<result name="success12">/renli/update_locate.jsp</result>
+			<result name="success13">/renli/delete/delete_list.jsp</result>
+			<result name="success14" type="redirect">/renli/renlimange!queryFileList?index=3</result>
+			<result name="success15">/renli/delete/recovery_list.jsp</result>
+			<result name="success16" type="redirect">/renli/renlimange!queryFileListDeleted?index=1</result>
+			<result name="success17">/renli/delete/delete_forever_list.jsp</result>
+			<result name="success18" type="redirect">/renli/renlimange!queryFileListDeleted?index=2</result>
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+					    http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	
+	
+	<bean id="registerBiz" class="com.zking.hr.biz.impl.register.registerBizImpl">
+		<property name="registerdao" ref="registerDao"/>
+	</bean>
+	
+	<bean id="registeraction" class="com.zking.hr.view.contorl.action.register.registerAction">
+		<property name="registerbiz" ref="registerBiz"></property>
+	</bean>
+	
+	
+</beans>

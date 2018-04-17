@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+ "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	
+	<constant name="struts.objectFactory" value="spring"></constant>
+<!-- 此处导包 -->
+	<include file="com/zking/hr/xml/struts/login/struts_login.xml"></include>
+
+	<include file="com/zking/hr/xml/struts/clickMenu/struts_clickmenu.xml"></include>
+	
+	<include file="com/zking/hr/xml/struts/salaryIssueManage/struts_salaryIssueManage.xml"></include>
+	
+	<include file="com/zking/hr/xml/struts/register/struts_register.xml"></include>
+	
+	<include file="com/zking/hr/xml/struts/customization/manpowerResource/struts_manpowerResource.xml"></include>
+	
+	<include file="com/zking/hr/xml/struts/customization/salaryManage/struts_salaryManage.xml"></include>
+	
+	<include file="com/zking/hr/xml/struts/SalaryStandManage/struts_SalaryStandManage.xml"></include>
+	
+	<include file="com/zking/hr/xml/struts/transferManage/struts_transferManage.xml"></include>
+	
+	<include file="com/zking/hr/xml/struts/system/struts_system.xml"></include>
+	
+	<include file="com/zking/hr/xml/struts/renli/struts_renli.xml"></include>
+	
+</struts>

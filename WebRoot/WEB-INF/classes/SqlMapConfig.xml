@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig
+PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN"
+"http://www.ibatis.com/dtd/sql-map-config-2.dtd" >
+<sqlMapConfig>
+	<settings cacheModelsEnabled="true"
+			  enhancementEnabled="true"
+			  lazyLoadingEnabled="true"
+			  errorTracingEnabled="true"
+			  maxRequests="64"
+			  maxSessions="10" 
+			  maxTransactions="5" 
+			  useStatementNamespaces="false"
+			   />
+
+
+	<sqlMap resource="com/zking/hr/xml/ibatis/TFiles/TFiles.xml"></sqlMap>
+	<sqlMap resource="com/zking/hr/xml/ibatis/TOrderPerformance/TOrderPerformance.xml"></sqlMap>
+	<sqlMap resource="com/zking/hr/xml/ibatis/TOrganization/TOrganization.xml"></sqlMap>
+	<sqlMap resource="com/zking/hr/xml/ibatis/TPermission/TPermission.xml"></sqlMap>	
+	<sqlMap resource="com/zking/hr/xml/ibatis/TPosition/TPosition.xml"></sqlMap>	
+	<sqlMap resource="com/zking/hr/xml/ibatis/TPositiontype/TPositiontype.xml"></sqlMap>
+	<sqlMap resource="com/zking/hr/xml/ibatis/TProfessional/TProfessional.xml"></sqlMap>
+	<sqlMap resource="com/zking/hr/xml/ibatis/TPublicproperty/TPublicproperty.xml"></sqlMap>
+	<sqlMap resource="com/zking/hr/xml/ibatis/TRole/TRole.xml"></sqlMap>
+	<sqlMap resource="com/zking/hr/xml/ibatis/TRolePermission/TRolePermission.xml"></sqlMap>
+	<sqlMap resource="com/zking/hr/xml/ibatis/TSalarypayoff/TSalarypayoff.xml"></sqlMap>
+	<sqlMap resource="com/zking/hr/xml/ibatis/TSalaryproject/TSalaryproject.xml"></sqlMap>	
+	<sqlMap resource="com/zking/hr/xml/ibatis/TSalarystanderd/TSalarystanderd.xml"></sqlMap>
+	<sqlMap resource="com/zking/hr/xml/ibatis/TSalarystandProject/TSalarystandProject.xml"></sqlMap>
+	<sqlMap resource="com/zking/hr/xml/ibatis/TStafftransfer/TStafftransfer.xml"></sqlMap>
+	<sqlMap resource="com/zking/hr/xml/ibatis/TUser/TUser.xml"></sqlMap>
+	<sqlMap resource="com/zking/hr/xml/ibatis/TsalarypayoffAdd/TsalarypayoffAdd.xml"></sqlMap>
+	
+</sqlMapConfig>

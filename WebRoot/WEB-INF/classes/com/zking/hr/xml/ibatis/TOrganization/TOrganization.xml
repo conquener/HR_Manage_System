@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+ "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="organization" type="com.zking.hr.pojo.TOrganization"></typeAlias>
+	<insert id="insertOrganization" parameterClass="organization">
+		<selectKey keyProperty="oraganId" resultClass="java.lang.Integer">
+			select max(OraganID)+1 from TOrganization
+		</selectKey>
+		<![CDATA[
+		insert into TOrganization(OraganID,OraganName,SalaryPayPersonID,SalePersonID,ParentID,ParentName,remark )
+			values(#oraganId#,#oraganName#,#salarypaypersonId#,#salepersonId#,#parentId#,#parentName#,#remark#)
+	
+	]]>
+	</insert>
+	
+	<update id="updateOrganization" parameterClass="organization">
+		update TOrganization set 
+		OraganName=#oraganName#,
+		SalaryPayPersonID=#salarypaypersonId#,
+		SalePersonID=#salepersonId#,
+		ParentID=#parentId#,
+		ParentName=#parentName#,
+		 remark=#remark#
+		 	where OraganID = #oraganId#
+	</update> 
+
+	<delete id="deleteOrganization" parameterClass="java.lang.Integer">
+		<![CDATA[
+			delete from TOrganization where OraganID = #oraganId#
+		]]>
+	</delete>
+	<typeAlias alias="pageUtil" type="com.zking.hr.utils.pageUtils.PageUtils"></typeAlias>
+	
+	<select id="queryOrganizationlist" parameterClass="pageUtil" resultClass="organization">
+		select OraganID,OraganName,SalaryPayPersonID,SalePersonID,ParentID,ParentName,remark
+			 from (select rownum rn,TOrganization.* from TOrganization)
+			  where rn between #beginRow# and #endRow#
+	</select>
+	<select id="countrows" resultClass="java.lang.Integer">
+		select count(1) from TOrganization 
+	</select>
+
+	
+	<select id="queryOrganizationid" parameterClass="java.lang.Integer" resultClass="organization">
+		select OraganID,OraganName,SalaryPayPersonID,SalePersonID,ParentID,ParentName,remark
+			 from  TOrganization
+			  where ParentID =  #ParentID#
+	</select>
+	
+	<typeAlias alias="levelPage" type="com.zking.hr.view.pojo.level.Level"/>
+	<select id="countrowLevel" parameterClass="levelPage" resultClass="java.lang.Integer">
+		select count(1) from TOrganization 
+		<isEqual property="level" compareValue="1">
+				where parentID = 0
+		</isEqual>
+		<isEqual property="level" compareValue="2">
+				where parentID in (select OraganID from TOrganization where parentID = 0)
+		</isEqual>
+		<isEqual property="level" compareValue="3">
+				where parentID in (select OraganID from TOrganization where parentID in (select OraganID from TOrganization where parentID = 0))
+		</isEqual>
+	</select>
+	<select id="queryBylevel" parameterClass="levelPage" resultClass="organization">
+		select OraganID,OraganName,SalaryPayPersonID,SalePersonID,ParentID,ParentName,remark
+		<isEqual property="level" compareValue="1">
+		from
+		  (select rownum rn,OraganID,OraganName,SalaryPayPersonID,SalePersonID,ParentID,ParentName,remark from TOrganization 
+		  	where parentID = 0
+		  )	
+				 where parentID = 0
+		</isEqual>
+		<isEqual property="level" compareValue="2">
+		from
+		  (select rownum rn,OraganID,OraganName,SalaryPayPersonID,SalePersonID,ParentID,ParentName,remark from TOrganization
+		  	where parentID in (select OraganID from TOrganization where parentID = 0)
+		  )
+				where parentID in (select OraganID from TOrganization where parentID = 0)
+		</isEqual>
+		<isEqual property="level" compareValue="3">
+			from
+		  (select rownum rn,OraganID,OraganName,SalaryPayPersonID,SalePersonID,ParentID,ParentName,remark from TOrganization
+		  	where parentID in (select OraganID from TOrganization where parentID in (select OraganID from TOrganization where parentID = 0))
+		  )
+				where parentID in (select OraganID from TOrganization where parentID in (select OraganID from TOrganization where parentID = 0))
+		</isEqual>
+			and rn between #beginPage# and #endPage#
+	</select>
+	
+	<select id="queryByOraganId" parameterClass="java.lang.Integer" resultClass="organization">
+		SELECT OraganID,OraganName,SalaryPayPersonID,SalePersonID,ParentID,ParentName,remark from TOrganization where OraganID=#OraganID#
+	</select>
+	
+	<select id="querySecondOra" resultClass="organization">
+		select OraganID,OraganName,SalaryPayPersonID,SalePersonID,ParentID,ParentName,remark from
+		(select rownum rn,OraganID,OraganName,SalaryPayPersonID,SalePersonID,ParentID,ParentName,remark from TOrganization where parentID in (select OraganID from TOrganization where parentID = 0))
+		 where   parentID in (select OraganID from TOrganization where parentID = 0)
+	</select>
+	<select id="queryAllBylevel" parameterClass="java.lang.Integer" resultClass="organization">
+		select * from TOrganization where parentID = #parentOrginzation#
+	</select>
+</sqlMap>

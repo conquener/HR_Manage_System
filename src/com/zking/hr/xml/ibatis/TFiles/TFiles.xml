@@ -1,0 +1,624 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+ "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="tfiles" type="com.zking.hr.pojo.TFiles"></typeAlias>
+	<typeAlias alias="pageRow" type="com.zking.hr.view.pojo.pageRow.pageRow"></typeAlias>
+	<typeAlias alias="updateSalaryStatus" type="com.zking.hr.view.TFiles.updateSalaryStatus"></typeAlias>
+	<typeAlias alias="querySalaryStatus" type="com.zking.hr.view.TFiles.querySalaryStatus"></typeAlias>
+	<typeAlias alias="queryByCondiction" type="com.zking.hr.view.TFiles.queryByCondiction" ></typeAlias>
+	<typeAlias alias="queryFiles" type="com.zking.hr.view.pojo.file.QueryFiles"/>
+	
+	<resultMap id="queryCheckStatus" class="java.util.HashMap">
+		<result property="filesFilesid" javaType="java.lang.Integer" />
+		<result property="filesUserName" javaType="java.lang.String" />
+		<result property="filesSex" javaType="java.lang.String" />
+		<result property="filesFirstOrganization" javaType="java.lang.String" />
+		<result property="filesSecondOrganization" javaType="java.lang.String" />
+		<result property="filesThirdOrganization" javaType="java.lang.String" />
+		<result property="filesProfessionalTitle" javaType="java.lang.String" />
+	</resultMap>
+	
+	<resultMap id="querySalaryStatusmap" class="java.util.HashMap">
+		<result property="salarystanderdId" javaType="java.lang.Integer" />
+		<result property="filesUserName" javaType="java.lang.String" />
+		<result property="filesfilesid" javaType="java.lang.Integer"/>
+	</resultMap>
+	
+	
+	
+	
+	<!-- 新增档案 -->
+	<insert id="insertTFiles" parameterClass="tfiles">
+	<selectKey keyProperty="filesFilesid" resultClass="java.lang.Integer">
+			select max(FilesFilesID)+1 from TFiles
+	</selectKey>
+		<![CDATA[insert into TFiles(FILESFILESID,FilesUSERID,FilesUserName,FILESFirstOrganization,FILESSecondOrganization,
+				 FILESThirdOrganization,FILESPositionClassify,FILESPositionName,FILESProfessionalTitle,FILESSex,
+				 FILESEmail,FILESPhone,FILESQQ,FILESTelphone,FILESAddress,FILESPostCode,FILESNationality,
+				 FILESBirthplace,FILESBirthday,FILESNation,FILESFaith,FILESPoliticsStatus,FILESIDcard,
+				 FILESSocialInsurancePhone,FILESAge,FILESEducation,FILESEducationAge,FILESEducationMajor,
+				 Salarystanderdid,FILESRemunerationStandard,Filessalarystatus,Filessalarytime,
+				 FILESOpeningBank,FILESAccountNumber,FILESRegisterPeople,FILESFilingTime,FILESAptitude,
+				 FILESHobby,FILESResume,FILESFamilyTies,Filescheckstatu,Filesdeletestatu,imageName,imageurl,REMARK)
+		  values(#filesFilesid#,#filesUserid#,#filesUserName#,#filesFirstOrganization#,#filesSecondOrganization#,
+		  		 #filesThirdOrganization#,#filesPositionClassify#,#filesPositionName#,#filesProfessionalTitle#,
+		  		 #filesSex#,#filesEmail#,#filesPhone#,#filesQq#,#filesTelphone#,#filesAddress#,#filesPostcode#,
+		  		 #filesNationality#,#filesBirthplace#,#filesBirthday#,#filesNation#,#filesFaith#,
+		  		 1,#filesIdcard#,#filesSocialInsurancePhone#,#filesAge#,#filesEducation#,
+		  		 #filesEducationAge#,#filesEducationMajor#,#salarystanderdId#,#filesRemunerationStandard#,
+		  		 1,#filesSalaryTime#,#filesOpeningBank#,#filesAccountNumber#,#filesRegisterPeople#,
+		  		 #filesFilingTime#,#filesAptitude#,#filesHobby#,#filesResume#,#filesFamilyTies#,1,1,#imagename#,#imageurl#,#remark#)
+		]]>
+	</insert>
+	
+	<!-- 修改档案 -->
+	<update id="updateTFiles" parameterClass="tfiles">
+		update TFiles set
+			FILESFILESID=#filesFilesid#
+			<isNotNull property="filesUserid"  prepend="," >
+				FilesUSERID=#filesUserid#
+			</isNotNull>
+			<isNotNull property="filesUserName"  prepend="," >
+				FilesUserName=#filesUserName#
+			</isNotNull>
+			<isNotNull property="filesFirstOrganization"  prepend="," >
+				FILESFirstOrganization=#filesFirstOrganization#
+			</isNotNull>
+			<isNotNull property="filesSecondOrganization"  prepend="," >
+				FILESSecondOrganization=#filesSecondOrganization#
+			</isNotNull>
+			<isNotNull property="filesThirdOrganization"  prepend="," >
+				FILESThirdOrganization=#filesThirdOrganization#
+			</isNotNull>
+			<isNotNull property="filesPositionClassify"  prepend="," >
+				FILESPositionClassify=#filesPositionClassify#
+			</isNotNull>
+			<isNotNull property="filesPositionName"  prepend="," >
+				FILESPositionName=#filesPositionName#
+			</isNotNull>
+			<isNotNull property="filesProfessionalTitle"  prepend="," >
+				FILESProfessionalTitle=#filesProfessionalTitle#
+			</isNotNull>
+			<isNotNull property="filesEmail"  prepend="," >
+				FILESSex=#filesSex#
+			</isNotNull>
+			<isNotNull property="filesEmail" prepend=",">
+				FILESEmail=#filesEmail#
+			</isNotNull>
+			<isNotNull property="filesPhone"  prepend="," >
+				FILESPhone=#filesPhone#
+			</isNotNull>
+			<isNotNull property="filesQq" prepend=",">
+				FILESQQ=#filesQq#
+			</isNotNull>
+			<isNotNull property="filesAddress"  prepend="," >
+				FILESTelphone=#filesTelphone#
+			</isNotNull>
+			<isNotNull property="filesAddress"  prepend="," >
+				FILESAddress=#filesAddress#
+			</isNotNull>
+			<isNotNull property="filesPostcode"  prepend="," >
+				FILESPostCode=#filesPostcode#
+			</isNotNull>
+			<isNotNull property="filesNationality"  prepend="," >
+				FILESNationality=#filesNationality#
+			</isNotNull>
+			<isNotNull property="filesBirthplace"  prepend="," >
+				FILESBirthplace=#filesBirthplace#
+			</isNotNull>
+			<isNotNull property="filesBirthday"  prepend="," >
+				FILESBirthday=#filesBirthday#
+			</isNotNull>
+			<isNotNull property="filesNation"  prepend="," >
+				FILESNation=#filesNation#
+			</isNotNull>
+			<isNotNull property="filesFaith" prepend=",">
+				FILESFaith=#filesFaith#
+			</isNotNull>
+			<isNotNull property="filesPoliticsStatus"  prepend="," >
+				FILESPoliticsStatus=#filesPoliticsStatus#
+			</isNotNull>
+			<isNotNull property="filesIdcard" prepend="," >
+				FILESIDcard=#filesIdcard#
+			</isNotNull>
+			<isNotNull property="filesSocialInsurancePhone"  prepend="," >
+				FILESSocialInsurancePhone=#filesSocialInsurancePhone#
+			</isNotNull>
+			<isNotNull property="filesAge"  prepend="," >
+				FILESAge=#filesAge#
+			</isNotNull>
+			<isNotNull property="filesEducation" prepend="," >
+				FILESEducation=#filesEducation#
+			</isNotNull>
+			<isNotNull property="filesEducationAge"  prepend="," >
+				FILESEducationAge=#filesEducationAge#
+			</isNotNull>
+			<isNotNull property="filesEducationMajor"  prepend="," >
+				FILESEducationMajor=#filesEducationMajor#
+			</isNotNull>
+			<isNotNull property="salarystanderdId"  prepend="," >
+				Salarystanderdid=#salarystanderdId#
+			</isNotNull>
+			<isNotNull property="filesRemunerationStandard"  prepend="," >
+				FILESRemunerationStandard=#filesRemunerationStandard#
+			</isNotNull>
+			<isNotNull property="filesSalaryStatus"  prepend="," >
+				Filessalarystatus=#filesSalaryStatus#
+			</isNotNull>
+			<isNotNull property="filesSalaryTime"  prepend="," >
+				Filessalarytime=#filesSalaryTime#
+			</isNotNull>
+			<isNotNull property="filesOpeningBank"  prepend="," >
+				FILESOpeningBank=#filesOpeningBank#
+			</isNotNull>
+			<isNotNull property="filesAccountNumber"  prepend="," >
+				FILESAccountNumber=#filesAccountNumber#
+			</isNotNull>
+			<isNotNull property="filesRegisterPeople" prepend=",">
+				FILESRegisterPeople=#filesRegisterPeople#
+			</isNotNull>
+			<isNotNull property="filesFilingTime"  prepend="," >
+				FILESFilingTime=#filesFilingTime#
+			</isNotNull>
+			<isNotNull property="filesAptitude" prepend="," >
+				FILESAptitude=#filesAptitude#
+			</isNotNull>
+			<isNotNull property="filesHobby" prepend="," >
+				FILESHobby=#filesHobby#
+			</isNotNull>
+			<isNotNull property="filesResume"  prepend="," >
+				FILESResume=#filesResume#
+			</isNotNull>
+			<isNotNull property="filesFamilyTies" prepend=",">
+				FILESFamilyTies=#filesFamilyTies#
+			</isNotNull>
+			<isNotNull property="filesCheckStatu" prepend=",">
+				Filescheckstatu=#filesCheckStatu#
+			</isNotNull>
+			<isNotNull property="filesDeleteStatu"  prepend="," >
+				Filesdeletestatu=#filesDeleteStatu#
+			</isNotNull>
+			<isNotNull property="imagename"  prepend="," >
+				imageName=#imagename#
+			</isNotNull>
+			<isNotNull property="imageurl"  prepend="," >
+				imageurl=#imageurl#
+			</isNotNull>
+			<isNotNull property="remark"  prepend="," >
+				REMARK=#remark# 
+			</isNotNull>
+			where FILESFILESID=#filesFilesid# 
+	</update>
+	
+	<!-- 永久删除档案 -->
+	<delete id="deleteTFiles" parameterClass="java.lang.Integer">
+		<![CDATA[
+			delete from TFiles where FILESFILESID=#filesFilesid# 
+		]]>
+	</delete>
+	
+	<!-- 通过ID修改档案复核状态 -->
+	<update id="updateTFAddStatus" parameterClass="java.lang.Integer">
+		update TFiles set Filescheckstatu=2 where FILESFILESID=#filesFilesid#
+	</update>
+	
+	<!-- 通过ID修改档案复核状态 -->
+	<update id="updateTFAddStatus3" parameterClass="java.lang.Integer">
+		update TFiles set Filescheckstatu=3 where FILESFILESID=#filesFilesid#
+	</update>
+	
+	<!-- 通过ID修改档案删除状态 -->
+	<update id="updatedelTFStatus" parameterClass="java.lang.Integer">
+		update TFiles set Filesdeletestatu=2 where FILESFILESID=#filesFilesid#
+	</update>
+	
+	<!-- 通过ID恢复修改的档案删除状态 -->
+	<update id="updatedelTFStatusDeleted" parameterClass="java.lang.Integer">
+		update TFiles set Filesdeletestatu=1 where FILESFILESID=#filesFilesid#
+	</update>
+	
+	<update id="updateFilesEmpSalaryStatus" parameterClass="java.lang.Integer">
+		update TFiles t set t.filesSalaryStatus = 1 where t.filesdeletestatu =1
+	</update>
+	
+	
+	<!-- 通过ID查询一个档案的所有内容 -->
+	<select id="queryByTFilesId" parameterClass="java.lang.Integer" resultClass="tfiles">
+		select   FILESFILESID,FilesUSERID,FilesUserName,FILESFirstOrganization,FILESSecondOrganization,
+				 FILESThirdOrganization,FILESPositionClassify,filesPositionName,FILESProfessionalTitle,FILESSex,
+				 FILESEmail,FILESPhone,FILESQQ,FILESTelphone,FILESAddress,FILESPostCode,FILESNationality,
+				 FILESBirthplace,FILESBirthday,FILESNation,FILESFaith,FILESPoliticsStatus,FILESIDcard,
+				 FILESSocialInsurancePhone,FILESAge,FILESEducation,FILESEducationAge,FILESEducationMajor,
+				 SalaryStanderdId,FILESRemunerationStandard,FilesSalaryStatus,FilesSalaryTime,
+				 FILESOpeningBank,FILESAccountNumber,FILESRegisterPeople,FILESFilingTime,FILESAptitude,
+				 FILESHobby,FILESResume,FILESFamilyTies,FilesCheckStatu,FilesDeleteStatu,imageName,imageUrl,REMARK
+				 from TFiles where 1=1 and FILESFILESID=#filesFilesid#
+	</select>
+	
+	<!-- 通过ID修改薪水发放状态 -->
+	<update id="updateBySalaryStatus" parameterClass="updateSalaryStatus">
+			update TFiles set FilesSalaryStatus=#status# where 1=1 and FILESFILESID=#fileId#
+	</update>
+	
+	
+	<!-- 查询所有未复核的状态 -->
+	<select id="queryAddStatus" parameterClass="pageRow" resultMap="queryCheckStatus">
+		select	FILESFILESID,FILESUSERNAME,FILESSEX,FILESFirstOrganization,FILESSecondOrganization,FILESThirdOrganization,
+	    		FILESProfessionalTitle from (select rowNum RN,FILESFILESID,FILESUSERNAME,FILESSEX,FILESFirstOrganization,FILESSecondOrganization,FILESThirdOrganization,
+	         	FILESProfessionalTitle from TFiles where FilescheckStatu =1) where RN BETWEEN #beginRow# AND #endRow#
+    </select>
+	
+	<!-- 查询未复核档案的所有行数 -->
+	<select id="CountAddPage" resultMap="queryCheckStatus">
+			select FILESFILESID,FILESUSERNAME,FILESSEX,FILESFirstOrganization,FILESSecondOrganization,FILESThirdOrganization,
+			FILESProfessionalTitle from TFiles where 1=1 and FilesCheckStatu=1
+	</select>
+	
+	
+	
+	<!-- 通过机构查询相应薪酬发放状态的员工 -->
+	<select id="querySalaryStatus" parameterClass="querySalaryStatus" resultMap="querySalaryStatusmap">
+		select	salarystanderdId,filesUserName,FILESFILESID from TFiles where filesSalaryStatus = #status#
+		<dynamic>
+			<isNotNull property="oraganizationId">
+				<isEqual property="level" compareValue="1" prepend="and">
+				filesFirstOrganization=#oraganizationId#
+				</isEqual>
+				<isEqual property="level" compareValue="2" prepend="and">
+					filesSecondOrganization=#oraganizationId#
+				</isEqual>
+				<isEqual property="level"  compareValue="3" prepend="and">
+					filesThirdOrganization=#oraganizationId#
+				</isEqual>
+			</isNotNull>
+		</dynamic>
+    </select>
+	
+	
+	<!-- 条件查询 -->
+	<select id="queryByCondition" parameterClass="queryByCondiction" resultMap="queryCheckStatus">
+		select	FILESFILESID,FILESUSERNAME,FILESSEX,FILESFirstOrganization,FILESSecondOrganization,FILESThirdOrganization,
+	    		FILESProfessionalTitle from (select rowNum RN,FILESFILESID,FILESUSERNAME,FILESSEX,FILESFirstOrganization,FILESSecondOrganization,FILESThirdOrganization,
+	         	FILESProfessionalTitle,filesPositionClassify,filesPositionName,filesFilingTime from TFiles 
+	         	where FilescheckStatu =1) where RN BETWEEN #beginRow# AND #endRow#
+	    <dynamic>
+	    	<isNotNull property="firstOName">
+				<isNotEqual property="firstOName" compareValue="" prepend="and">
+					filesFirstOrganization=#firstOName#
+				</isNotEqual>
+			</isNotNull>
+			<isNotNull property="secondOname">
+				<isNotEqual property="secondOname" compareValue="" prepend="and">
+					filesSecondOrganization=#secondOname#
+				</isNotEqual>
+			</isNotNull>
+			<isNotNull property="thirdOName">
+				<isNotEqual property="thirdOName" compareValue="" prepend="and">
+					filesThirdOrganization=#thirdOName#
+				</isNotEqual>
+			</isNotNull>
+			<isNotNull property="positionTypeName">
+				<isNotEqual property="positionTypeName" compareValue="" prepend="and">
+					filesPositionClassify=#positionTypeName#
+				</isNotEqual>
+			</isNotNull>
+			<isNotNull property="positionName">
+				<isNotEqual property="positionName" compareValue="" prepend="and">
+					filesPositionName=#positionName#
+				</isNotEqual>
+			</isNotNull>
+			<isNotNull property="beginTime">
+				<isNotEqual property="beginTime" compareValue="" prepend="and">
+					filesFilingTime <![CDATA[>=]]> #beginTime#
+
+				</isNotEqual>
+			</isNotNull>
+			<isNotNull property="endTime">
+				<isNotEqual property="endTime" compareValue="" prepend="and">
+					filesFilingTime <![CDATA[<=]]> #endTime#
+				</isNotEqual>
+			</isNotNull>
+			
+	    </dynamic>
+    </select>
+	
+	<!-- 条件查询得到行数 -->
+	<select id="CountConditionPage" parameterClass="queryByCondiction" resultClass="java.lang.Integer">
+		select	count(1) from TFiles where 1=1 
+	    <dynamic>
+	    	<isNotNull property="firstOName">
+				<isNotEqual property="firstOName" compareValue="" prepend="and">
+					filesFirstOrganization=#firstOName#
+				</isNotEqual>
+			</isNotNull>
+			<isNotNull property="secondOname">
+				<isNotEqual property="secondOname" compareValue="" prepend="and">
+					filesSecondOrganization=#secondOname#
+				</isNotEqual>
+			</isNotNull>
+			<isNotNull property="thirdOName">
+				<isNotEqual property="thirdOName" compareValue="" prepend="and">
+					filesThirdOrganization=#thirdOName#
+				</isNotEqual>
+			</isNotNull>
+			<isNotNull property="positionTypeName">
+				<isNotEqual property="positionTypeName" compareValue="" prepend="and">
+					filesPositionClassify=#positionTypeName#
+				</isNotEqual>
+			</isNotNull>
+			<isNotNull property="positionName">
+				<isNotEqual property="positionName" compareValue="" prepend="and">
+					filesPositionName=#positionName#
+				</isNotEqual>
+			</isNotNull>
+			<isNotNull property="beginTime">
+				<isNotEqual property="beginTime" compareValue="" prepend="and">
+					filesFilingTime<![CDATA[ >= ]]> #beginTime#
+				</isNotEqual>
+			</isNotNull>
+			<isNotNull property="endTime">
+				<isNotEqual property="endTime" compareValue="" prepend="and">
+					filesFilingTime <![CDATA[<=]]> #endTime#
+				</isNotEqual>
+			</isNotNull>
+	    </dynamic>
+	</select>
+	
+<!-- 
+	<resultMap id="queryByOrganIdMap" type="java.util.HashMap">
+		<result property="filesUserName" />
+		<result property="Salarystanderdid"/>
+	</resultMap>
+	
+	<select id="queryByOrganId" parameterClass="java.lang.Integer" resultMap="queryByOrganIdMap">
+		select filesUserName,Salarystanderdid from TFiles where 
+	
+	</select>
+ -->	
+ 
+ 
+ <!-- 查询薪水已发放人员 -->
+ 
+ <typeAlias alias="salaryquerypojo" type="com.zking.hr.view.pojo.salaryquery.SalaryQuery"/>
+ <resultMap id="salaryquerypojomap" class="java.util.HashMap">
+ 	<result property="filesuserid" javaType="java.lang.Integer" />
+ 	<result property="filesuserName" javaType="java.lang.String" />
+ 	<result property="oraganname" javaType="java.lang.String"/>
+ 	<result property="salarystanderdID" javaType="java.lang.String"/>
+ </resultMap>
+
+	<!-- 薪水发放人员查询 -->
+	<select id="salarysendqueryes" parameterClass="salaryquerypojo"
+		resultMap="salaryquerypojomap">
+		select filesuserid,filesuserName,oraganname,salarystanderdID from(
+		select
+		f.filesuserid,f.filesuserName,s.oraganname,f.salarystanderdID,ROWNUM
+		rn
+		from tfiles f
+				join (select oraganid od,oraganname
+				from TORGANIZATION
+		<isNotNull property="salarySendOrganName">
+			<isNotEqual compareProperty="salarySendOrganName"
+				compareValue="">
+				where oraganName
+				like '%'||#salarySendOrganName#||'%'
+			</isNotEqual>
+		</isNotNull>
+				) s
+				on
+				f.filesthirdorganization=s.od
+		where f.filessalarystatus=2 
+		<isNotNull property="salarysendAddId" prepend="and">
+			f.salarystanderdId = #salarysendAddId#
+		</isNotNull>
+		<isNotNull property="salarysendstartTime">
+			<isNotEqual compareProperty="salarysendstartTime"
+				compareValue="" prepend="and">
+				f.filessalarytime >
+				to_date(#salarysendstartTime# ,'yyyy-mm-dd')
+			</isNotEqual>
+		</isNotNull>
+		<isNotNull property="salarysendendTime">
+			<isNotEqual compareProperty="salarysendendTime"
+				compareValue="" prepend="and">
+				f.filessalarytime <![CDATA[<]]>to_date(#salarysendendTime#,'yyyy-mm-dd')
+			</isNotEqual>
+		</isNotNull>
+		)
+		where rn between #beginRow# and #endRow#
+	</select>
+ 
+ <select id="salarysendqueryCount" parameterClass="salaryquerypojo"
+	resultClass="java.lang.Integer">
+	select count(*) from tfiles f
+	<isNotNull property="salarySendOrganName">
+		<isNotEqual compareProperty="salarySendOrganName"
+			compareValue="">
+			join (select oraganid od,oraganname from TORGANIZATION where oraganName
+			like '%'||#salarySendOrganName#||'%') s on filesthirdorganization=od
+		</isNotEqual>
+	</isNotNull>
+	where f.filessalarystatus=2
+	<isNotNull property="salarysendAddId" prepend="and">
+			f.salarystanderdId = #salarysendAddId#
+	</isNotNull>
+	<isNotNull property="salarysendstartTime">
+		<isNotEqual compareProperty="salarysendstartTime"
+			compareValue="" prepend="and">
+			f.filessalarytime > to_date(#salarysendstartTime# ,'yyyy-mm-dd')
+		</isNotEqual>
+	</isNotNull>
+	<isNotNull property="salarysendendTime">
+		<isNotEqual compareProperty="salarysendendTime"
+			compareValue="" prepend="and">
+			f.filessalarytime <![CDATA[<]]>to_date(#salarysendendTime#,'yyyy-mm-dd')
+		</isNotEqual>
+	</isNotNull>
+
+</select>
+ 
+ <resultMap id="queryByUesrIdMap" class="java.util.HashMap">
+	<result property="filesuserid"  javaType="java.lang.Integer" /> 
+ 	<result property="filesuserName"  javaType="java.lang.String" /> 
+ 	<result property="filesFirstOrganization"  javaType="java.lang.String" /> 
+ 	<result property="filesSecondOrganization"  javaType="java.lang.String" /> 
+ 	<result property="filesThirdOrganization"  javaType="java.lang.String" /> 
+ 	<result property="filesPositionClassify"  javaType="java.lang.String" /> 
+ 	<result property="fielsPositionName"  javaType="java.lang.String" /> 
+ </resultMap>
+ <!-- 根据员工来查询员工档案 -->
+ 
+ <select id="queryByUesrId" parameterClass="java.lang.Integer" resultMap="queryByUesrIdMap">
+	 select filesuserid,filesuserName,FILESFirstOrganization,FILESSecondOrganization,FILESThirdOrganization,FILESPositionClassify,FILESPositionName  from tfiles
+		where filesuserId = #staffId#
+</select>
+ <select id="queryFiles" parameterClass="queryFiles" resultClass="java.util.HashMap" >
+ 	select * from (
+ 	select fs.*,rownum rn from (
+ 	select f.*,o.oraganname name1,o2.oraganname name2,o3.oraganname name3 ,p.professionalname name4
+ 	from TFiles f join torganization o on f.filesfirstorganization=o.oraganid 
+ 	join torganization o2 on f.filessecondorganization = o2.oraganid 
+ 	join torganization o3 on f.filesthirdorganization=o3.oraganid
+ 	join tprofessional p on f.filesprofessionaltitle = p.professionalid
+ 	where  f.filesDeleteStatu=1
+ 	<isNotNull property="fristorganization" prepend="and"> 
+ 		FILESFirstOrganization = #fristorganization#
+ 	</isNotNull>
+ 	<isNotNull property="twoorganization" prepend="and"> 
+ 		FILESSecondOrganization = #twoorganization#
+ 	</isNotNull>
+ 	<isNotNull property="threeorganization" prepend="and"> 
+ 		FILESThirdOrganization = #threeorganization#
+ 	</isNotNull>
+	<isNotNull property="startTime">
+ 		<isNotEqual prepend="and" property="startTime" compareValue="">
+ 		filesFilingTime > = #startTime#
+ 		</isNotEqual>
+ 	</isNotNull>
+ 	<isNotNull  property="endTime">
+ 		<isNotEqual prepend="and" property="endTime" compareValue="">
+	 		filesFilingTime<![CDATA[ < ]]> = #endTime#
+ 		</isNotEqual>
+ 	</isNotNull>
+ 	order by f.filesfilesid
+ 	) fs
+ 	)
+ 	where rn between #startRow# and #endRow#
+ </select>
+ 
+ <select id="queryFilescountRow" parameterClass="queryFiles" resultClass="java.lang.Integer" >
+ 	select count(*) from TFiles  
+ 	where  filesDeleteStatu=1
+ 	<isNotNull property="fristorganization" prepend="and"> 
+ 		FILESFirstOrganization = #fristorganization#
+ 	</isNotNull>
+ 	<isNotNull property="twoorganization" prepend="and"> 
+ 		FILESSecondOrganization = #twoorganization#
+ 	</isNotNull>
+ 	<isNotNull property="threeorganization" prepend="and"> 
+ 		FILESThirdOrganization = #threeorganization#
+ 	</isNotNull>
+ 	<isNotNull property="startTime">
+ 		<isNotEqual prepend="and" property="startTime" compareValue="">
+ 			filesFilingTime > = #startTime#
+ 		</isNotEqual>
+ 	</isNotNull>
+ 	<isNotNull  property="endTime">
+ 		<isNotEqual prepend="and" property="endTime" compareValue="">
+	 		filesFilingTime<![CDATA[ < ]]> = #endTime#
+ 		</isNotEqual>
+ 	</isNotNull>
+ </select>
+ 
+  <select id="queryFileListDeletedcountRow" parameterClass="queryFiles" resultClass="java.lang.Integer" >
+ 	select count(*) from TFiles  
+ 	where  filesDeleteStatu=2
+ 	<isNotNull property="fristorganization" prepend="and"> 
+ 		FILESFirstOrganization = #fristorganization#
+ 	</isNotNull>
+ 	<isNotNull property="twoorganization" prepend="and"> 
+ 		FILESSecondOrganization = #twoorganization#
+ 	</isNotNull>
+ 	<isNotNull property="threeorganization" prepend="and"> 
+ 		FILESThirdOrganization = #threeorganization#
+ 	</isNotNull>
+ 	<isNotNull property="startTime">
+ 		<isNotEqual prepend="and" property="startTime" compareValue="">
+ 			filesFilingTime > = #startTime#
+ 		</isNotEqual>
+ 	</isNotNull>
+ 	<isNotNull  property="endTime">
+ 		<isNotEqual prepend="and" property="endTime" compareValue="">
+	 		filesFilingTime<![CDATA[ < ]]> = #endTime#
+ 		</isNotEqual>
+ 	</isNotNull>
+ </select>
+ <select id="queryFileListDeleted" parameterClass="queryFiles" resultClass="java.util.HashMap" >
+ 	select * from (
+ 	select fs.*,rownum rn from (
+ 	select f.*,o.oraganname name1,o2.oraganname name2,o3.oraganname name3 ,p.professionalname name4
+ 	from TFiles f join torganization o on f.filesfirstorganization=o.oraganid 
+ 	join torganization o2 on f.filessecondorganization = o2.oraganid 
+ 	join torganization o3 on f.filesthirdorganization=o3.oraganid
+ 	join tprofessional p on f.filesprofessionaltitle = p.professionalid
+ 	where  f.filesDeleteStatu=2
+ 	<isNotNull property="fristorganization" prepend="and"> 
+ 		FILESFirstOrganization = #fristorganization#
+ 	</isNotNull>
+ 	<isNotNull property="twoorganization" prepend="and"> 
+ 		FILESSecondOrganization = #twoorganization#
+ 	</isNotNull>
+ 	<isNotNull property="threeorganization" prepend="and"> 
+ 		FILESThirdOrganization = #threeorganization#
+ 	</isNotNull>
+	<isNotNull property="startTime">
+ 		<isNotEqual prepend="and" property="startTime" compareValue="">
+ 		filesFilingTime > = #startTime#
+ 		</isNotEqual>
+ 	</isNotNull>
+ 	<isNotNull  property="endTime">
+ 		<isNotEqual prepend="and" property="endTime" compareValue="">
+	 		filesFilingTime<![CDATA[ < ]]> = #endTime#
+ 		</isNotEqual>
+ 	</isNotNull>
+ 	order by f.filesfilesid
+ 	) fs
+ 	)
+ 	where rn between #startRow# and #endRow#
+ </select>
+ 
+ <select id="queryFileById" parameterClass="java.lang.Integer" resultClass="java.util.HashMap">
+ 	select f.*,o.oraganname name1,o2.oraganname name2,o3.oraganname name3 ,p.professionalname name4,pt.positiontypename,ps.positionname
+	   from TFiles f join torganization o on f.filesfirstorganization=o.oraganid 
+	   join torganization o2 on f.filessecondorganization = o2.oraganid 
+	   join torganization o3 on f.filesthirdorganization=o3.oraganid
+	   join tprofessional p on f.filesprofessionaltitle = p.professionalid
+	   join tpositiontype pt on f.filespositionclassify = pt.positiontypeid
+	   join tposition ps on f.filespositionname = ps.positionid
+ 	where f.filesfilesid = #fileId#
+ </select>
+ 
+ <select id="queryByOrganAndSend" parameterClass="java.util.HashMap" resultClass="tfiles">
+ 	select 	* from tfiles t 
+	 	where t.filessalarystatus = 1
+	 	<isNotNull property="organfristId" prepend="and">
+		 	t.filesfirstorganization = #organfristId# 
+	 	</isNotNull>
+	 	<isNotNull property="organsecondId" prepend="and">
+		 	t.filessecondorganization = #organsecondId# 
+	 	</isNotNull>
+	 	<isNotNull property="organthreeId" prepend="and">
+		 	t.filesthirdorganization = #organthreeId#
+	 	</isNotNull>
+ 
+ </select>
+ 
+ <select id="getFileUserName" parameterClass="java.lang.String" resultClass="java.util.HashMap">
+ 	select t.filesusername,t.filesfilesid from tfiles t 
+ 	where t.filesusername like '%'||#inputUserName#||'%'
+ 	and t.filesdeletestatu=1
+ </select>
+ 
+</sqlMap>

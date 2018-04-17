@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+ "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="TPositiontype" type="com.zking.hr.pojo.TPositiontype"></typeAlias>
+	
+	<delete id="deleteTPosT" parameterClass="java.lang.Integer">
+		<![CDATA[
+			delete from TPositionType where PositionTypeID=#positiontypeId# 
+		]]>
+	</delete>
+	
+	<insert id="insertTPositionType" parameterClass="TPositiontype">
+	<selectKey keyProperty="positiontypeId" resultClass="java.lang.Integer">
+			select max(PositionTypeID)+1 from TPositionType
+	</selectKey>
+		<![CDATA[
+			insert into TPositionType(PositionTypeID,PositionTypename,remark) 
+					values(#positiontypeId#,#positiontypeName#,#remark#)
+		]]>
+	</insert>
+	
+	<update id="updateTPositionType" parameterClass="TPositiontype">
+		update TPositionType set PositionTypename
+	</update>
+	
+	<select id="queryTPositionType" parameterClass="com.zking.hr.utils.pageUtils.PageUtils" resultClass="TPositiontype">
+		select positiontypeId,positiontypeName from (select rowNum RN,positiontypeId,positiontypeName from TPositiontype)
+		where RN BETWEEN #beginRow# AND #endRow# 
+	</select>
+	
+	<select id="queryTPositionTypeCountRow" resultClass="java.lang.Integer">
+			select count(1) from TPositiontype where 1=1
+	</select>
+	
+	<select id="queryPositionTypeAll" resultClass="TPositiontype">
+			select positiontypeId,positiontypeName,remark from TPositiontype where 1=1
+	</select>
+	
+	<select id="queryPostTypeAll" resultClass="TPositiontype">
+			select positiontypeId,positiontypeName,remark from TPositiontype
+	</select>
+	
+</sqlMap>
